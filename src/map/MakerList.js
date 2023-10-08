@@ -73,6 +73,7 @@ const Markers = () => {
           transparent={true}
           visible={isModalVisible}>
           <MapModal
+            
             id={selectedMarkerData.locationId}
             closeModal={closeModal}/>
         </Modal>

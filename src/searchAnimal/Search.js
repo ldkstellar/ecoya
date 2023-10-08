@@ -19,20 +19,19 @@ export default()=>{
             } = useSearch();
     const borderWidth = 0.3
     return(
-        <View style={{position:"absolute",justifyContent:"center",alignItems:"center",zIndex:1,alignSelf:"center"}}>
-            <Heihgt height={10}/>
+        <View style={{position:"absolute",left:340,top:0,zIndex:1}}>
+            
             <TouchableOpacity 
                 style={{
                     flexDirection:"row",
                     alignItems:"center",
-                    width:350,
+                    
                     borderWidth:0.3,
                     backgroundColor:"white"
                     }}
                 onPress={()=>setModalbtn()}>
-                <FontAwesome name="search" size={25} color="black"style={{padding:10}} />
-                <Text style={{color:"lightgrey"}}>동식물 검색</Text>
-              
+                <FontAwesome name="search" size={28} color="black"style={{}} />
+                
             
             </TouchableOpacity>
             <Modal
@@ -48,7 +47,7 @@ export default()=>{
                 />  
             </Modal>
 
-            <Heihgt height={10}/>
+            {/* <Heihgt height={10}/>
             
             <View style={{flexDirection:"row"}}>
                 <TouchableOpacity
@@ -67,7 +66,7 @@ export default()=>{
                     <Click title={"곤충"} borderWidth={borderWidth}/>
                 </View>
             </View>
-            
+             */}
             
            
             

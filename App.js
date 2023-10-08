@@ -15,7 +15,8 @@ export default function App() {
   const HomeScreen = ()=>{
     
     return(
-      <View>
+      <View style={{flex:1}}>
+        
         <Search/>
         <Map/>
     
@@ -32,7 +33,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View st></View>
+      
       <NavigationContainer>
         <Tab.Navigator
           
@@ -55,7 +56,7 @@ export default function App() {
              const myColor = focused?'green':'black';
             
             return(
-              <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+              <View style={{marginLeft:55,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                 <Icon name="map" color={myColor} size={iconSize} />
                 <Text>생태지도</Text>
               </View>
@@ -83,12 +84,11 @@ export default function App() {
             name="Mypage"
             component={MypageScreen} // Replace with a valid component
             options={{
-              
               title: "마이페이지",
               tabBarIcon: ({focused}) =>{ 
                 const myColor = focused?"green":'black'
                 return(
-                  <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                  <View style={{marginRight:55,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
                     <Icon name="person" color={myColor} size={iconSize} />
                     <Text>마이페이지</Text>
                   </View>

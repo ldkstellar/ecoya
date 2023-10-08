@@ -3,7 +3,7 @@ import {TouchableOpacity,View,Text,Image, Modal, SafeAreaView} from "react-nativ
 import Heihgt from "../Heihgt"
 import { useSpecificModal } from "./use-specific";
 import SpecificModal from "./SpecificModal";
-import { useMapModal } from "./use-MapModal";
+
 import axios from "axios";
 
 export default ({closeModal,id})=>{
@@ -21,9 +21,9 @@ export default ({closeModal,id})=>{
     useEffect(() => {
         async function fetchData() {
           try {
-    const url = `http://35.212.150.212:8080/api/creatures/detail/${id}`;
-    const response = await axios.get(url);
-            console.log(response.data);
+            const url = `http://35.212.150.212:8080/api/creatures/detail/${id}`;
+            const response = await axios.get(url);
+            // console.log(response.data);
             setanimalData(response.data);
             
           } catch (error) {
@@ -34,7 +34,6 @@ export default ({closeModal,id})=>{
       }, []);
     
       if (animalData === null) {
-        
         return null; //데이터가 없을 때 렌더링하지 않음
       }
      
@@ -43,26 +42,30 @@ export default ({closeModal,id})=>{
         onLongPress={closeModal}
         onPress={closeModal}
         activeOpacity={0.8}
-        style={{flex: 1,justifyContent: "flex-end",}}>
-        <View style={{ backgroundColor: "white", width:"100%",height:190,maxHeight:380,borderWidth:1,borderColor:"lightgrey"}}>
-        <Heihgt height={50}/>
-        <View style={{flexDirection:"row",marginLeft:30}}>
+        style={{flex: 1,justifyContent: "flex-end",marginBottom:81.7}}>
+        <View style={{ backgroundColor: "white",height:148,borderWidth:1,borderColor:"lightgrey",borderTopLeftRadius:12,borderTopRightRadius:12}}>
+        <Heihgt height={20}/>
+        <View style={{flexDirection:"row",marginLeft:21}}>
             <Image
-                style={{width:100,height:100}}
+                style={{borderWidth:0.2,borderColor:"black" ,width:108,height:108,borderRadius:12}}
                 source={{uri:animalData.imageUrl}} 
             />
-            <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center",marginLeft:10,}}>
-                <Text style={{fontSize:35}}>{animalData.creatureName}</Text>
+            <View style={{flexDirection:"column",marginLeft:16,flexShrink:1}}>
+                <View style={{flexDirection:"row"}}>
+                  {/* 이름 */}
+                  <Text style={{fontSize:24,fontWeight:"bold"}}>{animalData.creatureName}</Text>
+                  {/* 종류 */}
+                  <Text style={{fontSize:12,color:"lightgray",marginLeft:10,alignSelf:"flex-end"}}>{animalData.detailCategoryName}</Text>
+                </View>
                 <Heihgt height={5}/>
-                <Text style={{fontSize:15,color:"lightgray"}}>{animalData.detailCategoryName}</Text>
                 
-                <Text style={{fontSize:25}}>{animalData.creatureProtectionClass.detailCategoryId}</Text>
+                
                 <Heihgt height={4}/>
-                <TouchableOpacity style={{justifyContent:"center",alignItems:"center"}} onPress={myButton}>
-                    <Text style={{fontSize:20}}>상세페이지</Text>
-                </TouchableOpacity>
+                
+                    <Text style={{fontSize:12}} numberOfLines={0}>도로뇽과의 동물. 몸의 길이는 15cm 정도이며,갈색 바탕의 둥근 무늬가 있다</Text>
+               
             </View>
-            <Modal
+            {/* <Modal
                 animationType="slide"
                 transparent={false}
                 visible={specific}>
@@ -75,12 +78,13 @@ export default ({closeModal,id})=>{
                     specificModalClose={specificModalClose}
                     />
                 </SafeAreaView>
-            </Modal>
+            </Modal> */}
         </View>
 
       
         </View>
     </TouchableOpacity>
 
-    )
+    );
+
 }
