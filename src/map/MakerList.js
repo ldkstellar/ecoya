@@ -34,7 +34,7 @@ const Markers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://35.212.150.212:8080/api/creatures');
+        const response = await axios.get('http://34.127.0.240:8080/api/creatures');
         setanimalData(response.data);
         
         
@@ -47,8 +47,7 @@ const Markers = () => {
   }, []);
 
   if (animalData.length === 0) {
-    
-    return null; // 데이터가 없을 때 렌더링하지 않음
+    return null; // no data no rendering
   }
 
   return (

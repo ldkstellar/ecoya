@@ -8,18 +8,11 @@ export const useMapModal = () =>{
     const handleMarkerPress = (data) => {
          setModalVisible(true)
         setSelectedMarkerData(data);
-        //console.log(selectedMarkerData.creatureName);
-         
     };
      
     const closeModal = () => {
         setModalVisible(false);
-        
-      };
-
-
-    
-    
+    };   
    
     return{
         setSelectedMarkerData,

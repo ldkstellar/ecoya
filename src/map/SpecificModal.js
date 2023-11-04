@@ -1,6 +1,5 @@
 import React from 'react';
 import { Entypo } from '@expo/vector-icons';
-
 import {View, Image , ScrollView,Text,TouchableOpacity} from 'react-native'
 import Height from '../Heihgt'
 
@@ -9,12 +8,11 @@ export default ({
       creatureImage,
       creatureName,
       creatureInformation,
-      specificModalClose,}) =>{
-      
+      specificModalClose,}
+      )=>{
 
-    
-     return (
-      <View style={{flexDirection:"colum"}}>
+     return(
+     <View style={{flexDirection:"colum"}}>
             {/* 버튼 */}
             <TouchableOpacity activeOpacity={0.8} onPress={specificModalClose} style={{marginLeft:40,padding:5}}>
                   <Entypo name="home" size={26} color="black" />
