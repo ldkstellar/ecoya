@@ -1,9 +1,5 @@
 import { View ,TextInput, Button, Pressable, TouchableOpacity, Modal,Text} from "react-native"
 import { FontAwesome } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import Click from "./Click";
-import Heihgt from "../Heihgt";
-
 import { useSearch } from "./use-Search";
 import SearchModal from "./SearchModal";
 
@@ -19,7 +15,7 @@ export default()=>{
             } = useSearch();
     const borderWidth = 0.3
     return(
-        <View style={{position:"absolute",left:340,top:0,zIndex:1}}>
+       
             
             <TouchableOpacity 
                 style={{
@@ -33,7 +29,6 @@ export default()=>{
                 <FontAwesome name="search" size={28} color="black"style={{}} />
                 
             
-            </TouchableOpacity>
             <Modal
               animationType="fade"
               
@@ -46,8 +41,9 @@ export default()=>{
                 setSearch={setSearch}
                 />  
             </Modal>
+            </TouchableOpacity>
 
-            {/* <Heihgt height={10}/>
+            /* <Heihgt height={10}/>
             
             <View style={{flexDirection:"row"}}>
                 <TouchableOpacity
@@ -66,12 +62,12 @@ export default()=>{
                     <Click title={"곤충"} borderWidth={borderWidth}/>
                 </View>
             </View>
-             */}
+             */
             
            
             
             
-        </View>
+        
        
     )
 

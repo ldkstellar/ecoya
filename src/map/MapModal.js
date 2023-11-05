@@ -41,7 +41,7 @@ export default ({closeModal,id})=>{
       <TouchableOpacity
         onPress={()=>{
           closeModal();
-          navigation.navigate('토끼');
+          navigation.navigate('chat',{header:animalData.creatureName});
           }}>
       <View style={style.specific}>
       <Heihgt height={20}/>

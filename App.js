@@ -12,10 +12,9 @@ const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
 const HomeComponent = ()=>{
   
-  
   return(
     <View style={{flex:1 }}>
-      <Search/>
+      
       <Map/>
     </View>
    
@@ -44,10 +43,12 @@ const Home =()=>{
   name="Home"
   component={HomeComponent}
   options={{
+  headerRight:()=>(
+    <Search/>
+  ),
   title: "생태지도",
   tabBarIcon: ({focused}) => {
     const myColor = focused?'green':'black';
-    
     return(
       <View style={{marginLeft:55,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
         <Icon name="map" color={myColor} size={30} />
@@ -92,6 +93,7 @@ const Home =()=>{
 }
 
 export default function App() {
+  
  
     
 
@@ -102,8 +104,8 @@ export default function App() {
       
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='home' component={Home} options={{headerShown:false}}/>
-          <Stack.Screen name='토끼' component={Chat} />
+          <Stack.Screen name='home' component={Home} options={{headerShown:false}} />
+          <Stack.Screen name='chat' component={Chat} options={{title:"home"}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
