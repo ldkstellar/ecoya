@@ -5,14 +5,12 @@ import MapView, { Marker } from "react-native-maps";
 import axios from 'axios';
 import { useMapModal } from "./use-MapModal";
 import MapModal from "./MapModal";
+
 const MyMarker = ({ item,handleMarkerPress }) => {
   
   return (
     <Marker
-     
       onPress={()=>{
-        
-        
          handleMarkerPress(item);
         }}
       coordinate={{ latitude: item.creatureLatitude, longitude: item.creatureLongitude}}
@@ -24,7 +22,6 @@ const Markers = () => {
   
   const {
     selectedMarkerData,
-    setSelectedMarkerData,
     handleMarkerPress,
     closeModal,
     isModalVisible
@@ -36,10 +33,8 @@ const Markers = () => {
       try {
         const response = await axios.get('http://34.127.0.240:8080/api/creatures');
         setanimalData(response.data);
-        
-        
-        
-      } catch (error) {
+      } 
+      catch (error) {
         console.error('Error:', error);
       }
     }
@@ -60,21 +55,23 @@ const Markers = () => {
         longitudeDelta: 1,
       }}>
 
-      {animalData.map((value, index) =>{
-         
+      {
+      animalData.map((value, index) =>{  
         return(
         <MyMarker key={index} item={value} handleMarkerPress={handleMarkerPress} />
-      )})}
-      <View>
+      )})
+      }
 
+      <View>
         <Modal
           animationType="slide"
           transparent={true}
-          visible={isModalVisible}>
-          <MapModal
-            
+          visible={isModalVisible}
+        >
+        <MapModal
             id={selectedMarkerData.locationId}
-            closeModal={closeModal}/>
+            closeModal={closeModal}
+            />
         </Modal>
       </View>
     </MapView>
