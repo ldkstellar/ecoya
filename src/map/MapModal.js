@@ -4,12 +4,6 @@ import Heihgt from "../Heihgt"
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
-
-
-
-
-
-
 export default ({closeModal,id})=>{
   const navigation =useNavigation();
   const [animalData,setanimalData] = useState(()=>null);
@@ -42,7 +36,7 @@ export default ({closeModal,id})=>{
         onPress={()=>{
           closeModal();
           navigation.navigate('chat',{header:animalData.creatureName});
-          }}>
+          }}>    
       <View style={style.specific}>
       <Heihgt height={20}/>
       <View style={{flexDirection:"row",marginLeft:21}}>
@@ -86,6 +80,7 @@ const style = StyleSheet.create(
     borderTopLeftRadius:12,
     borderTopRightRadius:12
     ,
+    
     image:{
       borderWidth:0.2,
       borderColor:"black",

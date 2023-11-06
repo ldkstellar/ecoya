@@ -1,4 +1,4 @@
-import { StyleSheet,SafeAreaView,Text,View, Button} from 'react-native';
+import { StyleSheet,SafeAreaView,Text,View} from 'react-native';
 import Search from './src/searchAnimal/Search';
 import Map from './src/map/Map';
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -6,15 +6,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useHeaderHeight } from '@react-navigation/elements';
 import Chat from './src/map/Chat';
+
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
+
 const HomeComponent = ()=>{
-  
   return(
     <View style={{flex:1 }}>
-      
       <Map/>
     </View>
    

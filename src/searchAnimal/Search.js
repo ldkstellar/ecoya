@@ -14,15 +14,13 @@ export default()=>{
             setModalbtn,
             } = useSearch();
     const borderWidth = 0.3
-    return(
-       
-            
+    return( 
             <TouchableOpacity 
                 style={{
                     flexDirection:"row",
                     alignItems:"center",
+                    marginRight:10,
                     
-                    borderWidth:0.3,
                     backgroundColor:"white"
                     }}
                 onPress={()=>setModalbtn()}>

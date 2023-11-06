@@ -13,19 +13,10 @@ export default ({title})=>{
       }, []);
 
     return(
-        <SafeAreaView style={{flex:1}}>
-                <View style={Style.title}>
-                    <TouchableOpacity style={{flex:1}}>
-                        
-                            <Text>sss</Text>
-                        
-                    </TouchableOpacity>
-                    <Text style={{flex:1.5}}>{title}</Text>
-                </View>
-            
-            <View>
-            </View>
-        </SafeAreaView>
+        
+       <View>
+
+       </View>
 
     )
 }
