@@ -1,5 +1,5 @@
 import { useState ,useEffect} from "react";
-import {TouchableOpacity,View,Text,Image,StyleSheet,Modal} from "react-native"
+import {TouchableOpacity,View,Text,Image,StyleSheet,} from "react-native"
 import Heihgt from "../Heihgt"
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
@@ -44,14 +44,17 @@ export default ({closeModal,id})=>{
           style={style.specific.image}
           source={{uri:animalData.imageUrl}} 
         />
-          <View style={{marginLeft:16,flexShrink:1}}>
-              <View style={{flexDirection:"row"}}>
-                <Text style={{fontSize:24,fontWeight:"bold"}}>{animalData.creatureName}</Text>
-                <Text style={{fontSize:12,color:"lightgray",marginLeft:10,alignSelf:"flex-end"}}>{animalData.detailCategoryName}</Text>
+          <View style={{marginLeft:13,flexShrink:1}}>
+              <View style={{flexDirection:"row",}}>
+                <Text style={{fontSize:24,fontWeight:"bold",color:"#333"}}>{animalData.creatureName}</Text>
+                <Text style={{fontSize:12,color:"#666",marginLeft:10,alignSelf:"flex-end"}}>{animalData.detailCategoryName}</Text>
+                <TouchableOpacity>
+                  <Text style={{borderWidth:0.8}}>채팅하기</Text>
+                </TouchableOpacity>
               </View>
-              <Heihgt height={5}/>
-              <Heihgt height={4}/>
-                <Text style={{fontSize:12}} numberOfLines={0}>도로뇽과의 동물. 몸의 길이는 15cm 정도이며,갈색 바탕의 둥근 무늬가 있다</Text>
+              
+              <Heihgt height={6}/>
+                <Text style={{fontSize:12,fontWeight:400,marginRight:20,color:"#D9D9D9"}} numberOfLines={0}>도로뇽과의 동물. 몸의 길이는 15cm 정도이며,갈색 바탕의 둥근 무늬가 있다</Text>
           </View>
       </View>
       </View>
@@ -88,7 +91,8 @@ const style = StyleSheet.create(
       height:108,
       borderRadius:12
       },
-    text:{  
+    text:{
+      
     }
   }
 

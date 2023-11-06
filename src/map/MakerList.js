@@ -19,16 +19,17 @@ const MyMarker = ({ item,handleMarkerPress }) => {
 }
 
 const Markers = () => {
-  
   const {
     selectedMarkerData,
     handleMarkerPress,
     closeModal,
     isModalVisible
   } = useMapModal();
-    const [animalData,setanimalData] = useState([]);
+
+  const [animalData,setanimalData] = useState([]);
     
-  useEffect(() => {
+  useEffect(
+    () => {
     async function fetchData() {
       try {
         const response = await axios.get('http://34.127.0.240:8080/api/creatures');
@@ -39,7 +40,7 @@ const Markers = () => {
       }
     }
     fetchData();
-  }, []);
+  },[]);
 
   if (animalData.length === 0) {
     return null; // no data no rendering
@@ -56,10 +57,11 @@ const Markers = () => {
       }}>
 
       {
-      animalData.map((value, index) =>{  
-        return(
-        <MyMarker key={index} item={value} handleMarkerPress={handleMarkerPress} />
-      )})
+        animalData.map((value, index) =>{  
+          return(
+            <MyMarker key={index} item={value} handleMarkerPress={handleMarkerPress} />
+          );
+        })
       }
 
       <View>

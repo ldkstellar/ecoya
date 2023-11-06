@@ -2,6 +2,7 @@ import { View ,TextInput, Button, Pressable, TouchableOpacity, Modal,Text} from 
 import { FontAwesome } from '@expo/vector-icons';
 import { useSearch } from "./use-Search";
 import SearchModal from "./SearchModal";
+import SearchIcon from "../icons/SearchIcon";
 
 export default()=>{
         const {
@@ -19,12 +20,12 @@ export default()=>{
                 style={{
                     flexDirection:"row",
                     alignItems:"center",
-                    marginRight:10,
+                    marginRight:7,
+                    padding:5,
                     
-                    backgroundColor:"white"
                     }}
                 onPress={()=>setModalbtn()}>
-                <FontAwesome name="search" size={28} color="black"style={{}} />
+               <SearchIcon/>
                 
             
             <Modal

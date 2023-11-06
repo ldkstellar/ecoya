@@ -6,7 +6,7 @@ export default({animalData})=>{
 
     
       return (
-        <View style={{ borderWidth:0.3}}>
+        <View style={{ flex:1,borderWidth:0.3}}>
 
          <Markers animalData={animalData}/>
 

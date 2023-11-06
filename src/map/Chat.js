@@ -2,7 +2,7 @@ import {useEffect} from "react"
 import {View,Text,StyleSheet,SafeAreaView, TouchableOpacity} from "react-native"
 import { useNavigation ,useRoute} from "@react-navigation/native";
 
-export default ({title})=>{
+export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
     
@@ -13,7 +13,7 @@ export default ({title})=>{
       }, []);
 
     return(
-        
+
        <View>
 
        </View>
@@ -26,7 +26,6 @@ const Style = StyleSheet.create({
     title:{
         flexDirection:"row",
         flex:1,
-        
         justifyContent:"center"
         
         

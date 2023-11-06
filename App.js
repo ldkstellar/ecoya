@@ -7,19 +7,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import Chat from './src/map/Chat';
+import MapIcon from './src/icons/MapIcon';
+import Book from './src/icons/BookIcon';
+import Heihgt from './src/Heihgt';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+SplashScreen.preventAutoHideAsync();
 
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
-
-const HomeComponent = ()=>{
-  return(
-    <View style={{flex:1 }}>
-      <Map/>
-    </View>
-   
-
-  )
-}
 
 const MypageScreen = ()=>(<Text>Mypage</Text>);
 
@@ -32,25 +28,26 @@ const Home =()=>{
     <Tab.Navigator
     initialRouteName="Home"
     screenOptions={{
-    //tabBarActiveTintColor: "green",
-    //tabBarInactiveTintColor:"black",
+    //tabBarActiveTintColor: "#1AAB0E",
+    //tabBarInactiveTintColor:"#FFFFFF",
     tabBarShowLabel: false,
   }}>
 
 
 <Tab.Screen
   name="Home"
-  component={HomeComponent}
+  component={Map}
   options={{
   headerRight:()=>(
     <Search/>
   ),
   title: "생태지도",
   tabBarIcon: ({focused}) => {
-    const myColor = focused?'green':'black';
+    const myColor = focused?'#1AAB0E':'#FFFFFF';
     return(
-      <View style={{marginLeft:55,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-        <Icon name="map" color={myColor} size={30} />
+      <View style={{marginLeft:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+        <Heihgt height={6.44}/>
+        <MapIcon color ={myColor}/>
         <Text>생태지도</Text>
       </View>
     )
@@ -63,11 +60,12 @@ const Home =()=>{
   options={{
     title: "생물도감",
     tabBarIcon: ({focused}) => {
-      const myColor = focused?"green":"black";
+      const myColor = focused?"#1AAB0E":"#FFFFFF";
 
       return(
         <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-          <Icon name="notifications" color={myColor} size={30} />
+         <Heihgt height={6.44}/>
+         <Book color ={myColor}/>
           <Text>생물 도감</Text>
         </View>
     )}
@@ -79,9 +77,9 @@ const Home =()=>{
     options={{
       title: "마이페이지",
       tabBarIcon: ({focused}) =>{ 
-        const myColor = focused?"green":'black'
+        const myColor = focused?"#1AAB0E":'black'
         return(
-          <View style={{marginRight:55,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+          <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
             <Icon name="person" color={myColor} size={30} />
             <Text>마이페이지</Text>
           </View>
@@ -92,6 +90,11 @@ const Home =()=>{
 }
 
 export default function App() {
+  useEffect(()=>{
+    setTimeout(()=>SplashScreen.hideAsync()
+    ,3000);
+
+  },[]);
   
  
     

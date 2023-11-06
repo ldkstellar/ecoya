@@ -1,4 +1,4 @@
-import {SafeAreaView,View,Text,TouchableOpacity,TextInput} from 'react-native'
+import {SafeAreaView,View,TouchableOpacity,TextInput} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import Heihgt from '../Heihgt'
 
