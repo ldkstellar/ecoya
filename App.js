@@ -12,6 +12,7 @@ import Book from './src/icons/BookIcon';
 import Heihgt from './src/Heihgt';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import Mypage from './src/icons/Mypage';
 SplashScreen.preventAutoHideAsync();
 
 const Tab = createBottomTabNavigator();
@@ -43,12 +44,12 @@ const Home =()=>{
   ),
   title: "생태지도",
   tabBarIcon: ({focused}) => {
-    const myColor = focused?'#1AAB0E':'#FFFFFF';
+    const myColor = focused?'#1AAB0E':'#333333';
     return(
       <View style={{marginLeft:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
         <Heihgt height={6.44}/>
         <MapIcon color ={myColor}/>
-        <Text>생태지도</Text>
+        <Text style={{color:myColor}}>생태지도</Text>
       </View>
     )
   }
@@ -60,13 +61,13 @@ const Home =()=>{
   options={{
     title: "생물도감",
     tabBarIcon: ({focused}) => {
-      const myColor = focused?"#1AAB0E":"#FFFFFF";
+      const myColor = focused?"#1AAB0E":"#333333";
 
       return(
         <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
          <Heihgt height={6.44}/>
          <Book color ={myColor}/>
-          <Text>생물 도감</Text>
+          <Text style={{color:myColor}}>생물 도감</Text>
         </View>
     )}
     ,}}/>
@@ -77,11 +78,12 @@ const Home =()=>{
     options={{
       title: "마이페이지",
       tabBarIcon: ({focused}) =>{ 
-        const myColor = focused?"#1AAB0E":'black'
+        const myColor = focused?"#1AAB0E":"#333333"
         return(
           <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-            <Icon name="person" color={myColor} size={30} />
-            <Text>마이페이지</Text>
+            <Heihgt height={6.44}/>
+            <Mypage color={myColor}/>
+            <Text style={{color:myColor}}>마이페이지</Text>
           </View>
       )}
       ,}}/> 

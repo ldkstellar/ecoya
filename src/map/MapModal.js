@@ -35,7 +35,7 @@ export default ({closeModal,id})=>{
       <TouchableOpacity
         onPress={()=>{
           closeModal();
-          navigation.navigate('chat',{header:animalData.creatureName});
+          
           }}>    
       <View style={style.specific}>
       <Heihgt height={20}/>
@@ -47,9 +47,15 @@ export default ({closeModal,id})=>{
           <View style={{marginLeft:13,flexShrink:1}}>
               <View style={{flexDirection:"row",}}>
                 <Text style={{fontSize:24,fontWeight:"bold",color:"#333"}}>{animalData.creatureName}</Text>
-                <Text style={{fontSize:12,color:"#666",marginLeft:10,alignSelf:"flex-end"}}>{animalData.detailCategoryName}</Text>
-                <TouchableOpacity>
-                  <Text style={{borderWidth:0.8}}>채팅하기</Text>
+                <Text style={{fontSize:12,color:"#666",marginLeft:10,marginRight:40,alignSelf:"center"}}>{animalData.detailCategoryName}</Text>
+                <TouchableOpacity 
+                  onPress={()=>{
+                      closeModal();
+                      navigation.navigate('chat',{header:animalData.creatureName});
+                    }
+                  }
+                  style={{ width:66,height:24, backgroundColor:"#1AAB0E",borderRadius:100,borderWidth:0.8,borderColor:"#FFFFFF", justifyContent:"center",alignItems:"center"}}>
+                    <Text style={{fontSize:12,color:"#FFF"}}>채팅하기</Text>
                 </TouchableOpacity>
               </View>
               
