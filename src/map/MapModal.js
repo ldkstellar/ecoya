@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 
 export default ({closeModal,id})=>{
-  const navigation =useNavigation();
+  const navigation = useNavigation();
   const [animalData,setanimalData] = useState(()=>null);
   async function fetchData() {  
       try {
@@ -35,8 +35,8 @@ export default ({closeModal,id})=>{
       <TouchableOpacity
         onPress={()=>{
           closeModal();
-          
-          }}>    
+        }}>
+            
       <View style={style.specific}>
       <Heihgt height={20}/>
       <View style={{flexDirection:"row",marginLeft:21}}>
@@ -46,15 +46,15 @@ export default ({closeModal,id})=>{
         />
           <View style={{marginLeft:13,flexShrink:1}}>
               <View style={{flexDirection:"row",}}>
-                <Text style={{fontSize:24,fontWeight:"bold",color:"#333"}}>{animalData.creatureName}</Text>
-                <Text style={{fontSize:12,color:"#666",marginLeft:10,marginRight:40,alignSelf:"center"}}>{animalData.detailCategoryName}</Text>
+                <Text style={style.specific.text}>{animalData.creatureName}</Text>
+                <Text style={style.specific.specificText}>{animalData.detailCategoryName}</Text>
                 <TouchableOpacity 
                   onPress={()=>{
                       closeModal();
                       navigation.navigate('chat',{header:animalData.creatureName});
                     }
                   }
-                  style={{ width:66,height:24, backgroundColor:"#1AAB0E",borderRadius:100,borderWidth:0.8,borderColor:"#FFFFFF", justifyContent:"center",alignItems:"center"}}>
+                  style={style.specific.chatBtn}>
                     <Text style={{fontSize:12,color:"#FFF"}}>채팅하기</Text>
                 </TouchableOpacity>
               </View>
@@ -64,16 +64,14 @@ export default ({closeModal,id})=>{
           </View>
       </View>
       </View>
-      
       </TouchableOpacity>
      
     </TouchableOpacity>
-  
-    
   );
 }
 
 const style = StyleSheet.create(
+
   {
     touch:{
     flex: 1,
@@ -89,7 +87,7 @@ const style = StyleSheet.create(
     borderTopLeftRadius:12,
     borderTopRightRadius:12
     ,
-    
+
     image:{
       borderWidth:0.2,
       borderColor:"black",
@@ -97,9 +95,35 @@ const style = StyleSheet.create(
       height:108,
       borderRadius:12
       },
+
     text:{
+      fontSize:24,
+      fontWeight:"bold",
+      color:"#333"
       
+    },
+
+    specificText:{
+      fontSize:12,
+      color:"#666",
+      marginLeft:10,
+      
+      alignSelf:"center"
+    },
+
+    chatBtn:{
+      position:"absolute",
+      width:66,
+      height:24,
+      left:0,
+      right:10,
+      top:80,
+      backgroundColor:"#1AAB0E",
+      borderRadius:100,
+      borderWidth:0.8,
+      borderColor:"#FFFFFF",
+      justifyContent:"center",
+      alignItems:"center"
     }
   }
-
 });

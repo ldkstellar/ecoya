@@ -1,5 +1,5 @@
 import {useEffect} from "react"
-import {View,Text,StyleSheet,SafeAreaView, TouchableOpacity} from "react-native"
+import {View,StyleSheet} from "react-native"
 import { useNavigation ,useRoute} from "@react-navigation/native";
 
 export default ()=>{
@@ -27,10 +27,5 @@ const Style = StyleSheet.create({
         flexDirection:"row",
         flex:1,
         justifyContent:"center"
-        
-        
-        
-        
-        
     }
 });

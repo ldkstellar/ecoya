@@ -13,7 +13,7 @@ const MyMarker = ({ item,handleMarkerPress }) => {
       onPress={()=>{
          handleMarkerPress(item);
         }}
-      coordinate={{ latitude: item.creatureLatitude, longitude: item.creatureLongitude}}
+      coordinate={{latitude:item.creatureLatitude,longitude:item.creatureLongitude}}
     />
   );
 }
