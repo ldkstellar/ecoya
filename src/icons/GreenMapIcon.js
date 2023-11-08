@@ -1,14 +1,14 @@
 
 import {WithLocalSvg} from 'react-native-svg';
-import mapIcon from '../../assets/TabBarIcon/map.svg'
+import mapGreen from '../../assets/TabBarIcon/mapGreen.svg'
 
-const MapIcon = () => {
+const GreenMapIcon = () => {
    
     return (
        
             <WithLocalSvg
                 width={100}
-                asset={mapIcon}
+                asset={mapGreen}
             >
             </WithLocalSvg>
            
@@ -16,4 +16,4 @@ const MapIcon = () => {
     );
 }
 
-export default MapIcon;
+export default GreenMapIcon;

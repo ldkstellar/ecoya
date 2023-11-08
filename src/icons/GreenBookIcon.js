@@ -1,12 +1,12 @@
 import { WithLocalSvg } from 'react-native-svg';
-import book from '../../assets/TabBarIcon/book.svg'
+import bookGreen from '../../assets/TabBarIcon/bookGreen.svg'
 
-const BookIcon = () => {
+const GreenBookIcon = () => {
     return (
        
             <WithLocalSvg
                 width={100}
-                asset={book}
+                asset={bookGreen}
             >
                 
             </WithLocalSvg>
@@ -15,4 +15,4 @@ const BookIcon = () => {
     );
 }
 
-export default BookIcon;
+export default GreenBookIcon;

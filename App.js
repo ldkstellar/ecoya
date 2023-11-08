@@ -11,7 +11,10 @@ import Book from './src/icons/BookIcon';
 import Heihgt from './src/Heihgt';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import Mypage from './src/icons/Mypage';
+import MypageIcon from './src/icons/MypageIcon';
+import GreenBookIcon from './src/icons/GreenBookIcon';
+import GreenMypageIcon from './src/icons/GreenMyPageIcon';
+import GreenMapIcon from './src/icons/GreenMapIcon';
 SplashScreen.preventAutoHideAsync();
 
 const Tab = createBottomTabNavigator();
@@ -45,7 +48,7 @@ const Home =()=>{
     return(
       <View style={{marginLeft:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
         <Heihgt height={6.44}/>
-        <MapIcon color ={myColor}/>
+        {focused?<GreenMapIcon/>:<MapIcon/>}
         <Text style={{color:myColor}}>생태지도</Text>
       </View>
     )
@@ -63,7 +66,7 @@ const Home =()=>{
       return(
         <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
          <Heihgt height={6.44}/>
-         <Book color ={myColor}/>
+         {focused?<GreenBookIcon/>:<Book/>}
           <Text style={{color:myColor}}>생물 도감</Text>
         </View>
     )}
@@ -79,7 +82,7 @@ const Home =()=>{
         return(
           <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
             <Heihgt height={6.44}/>
-            <Mypage color={myColor}/>
+            {focused?<GreenMypageIcon/>:<MypageIcon/>}
             <Text style={{color:myColor}}>마이페이지</Text>
           </View>
       )}
