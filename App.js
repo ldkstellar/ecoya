@@ -1,7 +1,6 @@
 import { StyleSheet,SafeAreaView,Text,View} from 'react-native';
 import Search from './src/searchAnimal/Search';
 import Map from './src/map/Map';
-import Icon from "react-native-vector-icons/MaterialIcons";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import 'react-native-gesture-handler';
@@ -33,8 +32,6 @@ const Home =()=>{
     //tabBarInactiveTintColor:"#FFFFFF",
     tabBarShowLabel: false,
   }}>
-
-
 <Tab.Screen
   name="Home"
   component={Map}
@@ -94,15 +91,10 @@ const Home =()=>{
 export default function App() {
   useEffect(()=>{
     setTimeout(()=>SplashScreen.hideAsync()
-    ,3000);
+    ,2000);
 
   },[]);
   
- 
-    
-
-
-
   return (
     <SafeAreaView style={styles.container}>
       

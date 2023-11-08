@@ -58,14 +58,12 @@ export default ({closeModal,id})=>{
                     <Text style={{fontSize:12,color:"#FFF"}}>채팅하기</Text>
                 </TouchableOpacity>
               </View>
-              
               <Heihgt height={6}/>
                 <Text style={{fontSize:12,fontWeight:400,marginRight:20,color:"#D9D9D9"}} numberOfLines={0}>도로뇽과의 동물. 몸의 길이는 15cm 정도이며,갈색 바탕의 둥근 무늬가 있다</Text>
           </View>
       </View>
       </View>
       </TouchableOpacity>
-     
     </TouchableOpacity>
   );
 }
