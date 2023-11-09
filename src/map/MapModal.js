@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 export default ({closeModal,id})=>{
   const navigation = useNavigation();
   const [animalData,setanimalData] = useState(()=>null);
+  
   async function fetchData() {  
       try {
         const url = `http://34.127.0.240:8080/api/creatures/detail/${id}`;
@@ -74,7 +75,7 @@ const style = StyleSheet.create(
     touch:{
     flex: 1,
     justifyContent: "flex-end",
-    marginBottom:81.7,  
+    marginBottom:64,  
   },
 
   specific:{

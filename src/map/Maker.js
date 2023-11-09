@@ -1,6 +1,7 @@
 
 import { useEffect,useState } from "react";
-import { Modal, View ,TouchableOpacity,Text} from "react-native";
+import {View} from "react-native";
+import Modal  from "react-native-modal";
 import MapView, { Marker } from "react-native-maps";
 import axios from 'axios';
 import { useMapModal } from "./use-MapModal";
@@ -33,9 +34,7 @@ const Markers = () => {
     latitudeDelta: 1,
     longitudeDelta: 1});
   const [key, setKey] = useState(0);
-    
   const [location, setLocation] = useState(null);
-
   const getLocationAsync = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
@@ -88,9 +87,16 @@ const Markers = () => {
 
       <View>
         <Modal
-          animationType="slide"
+          animationIn={"slideInUp"}
+          animationOut={"slideOutDown"}
+          animationInTiming={1000}
+          animationOutTiming={1000}
+          backdropOpacity={0.7}
+          backdropTransitionInTiming={800}
+          backdropTransitionOutTiming={800}
           transparent={true}
           visible={isModalVisible}
+          
         >
         <MapModal
             id={selectedMarkerData.locationId}
