@@ -96,8 +96,8 @@ const Markers = () => {
           backdropTransitionOutTiming={800}
           transparent={true}
           visible={isModalVisible}
-          
         >
+          
         <MapModal
             id={selectedMarkerData.locationId}
             closeModal={closeModal}

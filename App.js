@@ -15,13 +15,11 @@ import MypageIcon from './src/icons/MypageIcon';
 import GreenBookIcon from './src/icons/GreenBookIcon';
 import GreenMypageIcon from './src/icons/GreenMyPageIcon';
 import GreenMapIcon from './src/icons/GreenMapIcon';
-SplashScreen.preventAutoHideAsync();
 
+SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
-
 const MypageScreen = ()=>(<Text>Mypage</Text>);
-
 const NotificationScreen = ()=>(
   <Text>나의 도감들입니다.</Text>
 );
@@ -31,10 +29,9 @@ const Home =()=>{
     <Tab.Navigator
     initialRouteName="Home"
     screenOptions={{
-    //tabBarActiveTintColor: "#1AAB0E",
-    //tabBarInactiveTintColor:"#FFFFFF",
-    tabBarShowLabel: false,
+      tabBarShowLabel: false,
   }}>
+
 <Tab.Screen
   name="Home"
   component={Map}
@@ -78,7 +75,8 @@ const Home =()=>{
     options={{
       title: "마이페이지",
       tabBarIcon: ({focused}) =>{ 
-        const myColor = focused?"#1AAB0E":"#333333"
+        const myColor = focused?"#1AAB0E":"#333333";
+
         return(
           <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
             <Heihgt height={6.44}/>
@@ -95,16 +93,14 @@ export default function App() {
   useEffect(()=>{
     setTimeout(()=>SplashScreen.hideAsync()
     ,2000);
-
   },[]);
   
   return (
     <SafeAreaView style={styles.container}>
-      
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='home' component={Home} options={{headerShown:false}} />
-          <Stack.Screen name='chat' component={Chat} options={{title:"home"}}/>
+          <Stack.Screen name='home' component={Home} options={{title:"뒤로가기",headerShown:false}} />
+          <Stack.Screen name='chat' component={Chat} options={{title:"뒤로가기",}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

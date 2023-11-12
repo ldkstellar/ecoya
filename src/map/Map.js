@@ -1,7 +1,7 @@
 import React from "react"
 import {View} from "react-native"
 import Markers from "./Maker";
-import Refresh from "./Refresh";
+
 
 export default({animalData})=>{
 

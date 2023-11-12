@@ -8,7 +8,7 @@ export default ({closeModal,id})=>{
   const navigation = useNavigation();
   const [animalData,setanimalData] = useState(()=>null);
   
-  async function fetchData() {  
+  async function fetchData(){  
       try {
         const url = `http://34.127.0.240:8080/api/creatures/detail/${id}`;
         const response = await axios.get(url);
@@ -18,7 +18,7 @@ export default ({closeModal,id})=>{
       catch (error){
         console.error('Error:', error);
       }
-    }
+  }
 
   useEffect(()=>{
     fetchData();
@@ -52,7 +52,7 @@ export default ({closeModal,id})=>{
                 <TouchableOpacity 
                   onPress={()=>{
                       closeModal();
-                      navigation.navigate('chat',{header:animalData.creatureName});
+                      navigation.navigate('chat',{header:animalData});
                     }
                   }
                   style={style.specific.chatBtn}>
