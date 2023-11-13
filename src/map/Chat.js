@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react"
-import {View,StyleSheet,Text, TextInput,KeyboardAvoidingView, Platform} from "react-native"
+import {View,StyleSheet,Text, ScrollView,KeyboardAvoidingView, Platform} from "react-native"
 import { useNavigation ,useRoute} from "@react-navigation/native";
 import axios from "axios";
 import AddMessageInput from "./AddMessageInput";
+import Heihgt from "../Heihgt";
+import ChatText from "./ChatText";
 export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
@@ -30,8 +32,15 @@ export default ()=>{
     return(
 
        <KeyboardAvoidingView
-       behavior={Platform.OS ==="ios" ? "padding":"height"}>
-        <AddMessageInput/>
+        
+        behavior={"height"}>
+         
+
+         
+          <ChatText/>        
+         
+          <AddMessageInput/>
+          
        </KeyboardAvoidingView>
 
     )

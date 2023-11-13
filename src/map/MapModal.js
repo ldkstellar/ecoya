@@ -84,8 +84,7 @@ const style = StyleSheet.create(
     borderWidth:1,
     borderColor:"lightgrey",
     borderTopLeftRadius:12,
-    borderTopRightRadius:12
-    ,
+    borderTopRightRadius:12,
 
     image:{
       borderWidth:0.2,
