@@ -5,6 +5,7 @@ import axios from "axios";
 import AddMessageInput from "./AddMessageInput";
 import Heihgt from "../Heihgt";
 import ChatText from "./ChatText";
+import { FlatList } from "react-native-gesture-handler";
 export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
@@ -20,7 +21,7 @@ export default ()=>{
           console.error('Error:', error);
         }
     }
-  
+    
     
     useEffect(() => {
         navigation.setOptions({
@@ -30,16 +31,17 @@ export default ()=>{
 
    
     return(
-
+        // KeyboardVertical offset으로 높이를 조절한다.
        <KeyboardAvoidingView
-        
-        behavior={"height"}>
-         
-
-         
-          <ChatText/>        
-         
-          <AddMessageInput/>
+        style={{flex:1}}
+        behavior={Platform.OS ==="ios" ? "padding":"height"}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
+        <ScrollView style = {{backgroundColor:"green"}}>
+                    {/* 맵함수를 활용하여 component찍기 */}
+          <Text>테스트</Text>
+        </ScrollView>
+        <AddMessageInput/>
+          
           
        </KeyboardAvoidingView>
 

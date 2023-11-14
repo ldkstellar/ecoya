@@ -1,15 +1,15 @@
 import React from "react"
-import {KeyboardAvoidingView, TextInput, TouchableOpacity, Text,View, ScrollView } from "react-native"
-import Heihgt from "../Heihgt"
+import { TextInput,View} from "react-native"
 
 
-export default ({value,onchangetext,placeholder,onpressAdd,onSubmitEditing,onFocus})=>{//parameter가 undefined가 되는 이유는 객체만 넘겨서 그럼 객체의 item을 반환해야 한다.
+
+export default ({value,onchangetext,placeholder,onSubmitEditing,onFocus})=>{//parameter가 undefined가 되는 이유는 객체만 넘겨서 그럼 객체의 item을 반환해야 한다.
     
     return(
             
            
              
-            <View style={{flexDirection:"row",backgroundColor:"grey",borderTopWidth:"0.8",alignItems:"center"}}>
+            <View style={{height:35,flexDirection:"row",backgroundColor:"grey",borderTopWidth:"0.8",justifyContents:"center",borderColor:"white"}}>
                 <TextInput
                     style={{width:298,height:32, borderRadius:100,backgroundColor:"#EDEDED"}}
                     value={value}
