@@ -1,11 +1,10 @@
 import {useEffect, useState} from "react"
-import {View,StyleSheet,Text, ScrollView,KeyboardAvoidingView, Platform} from "react-native"
-import { useNavigation ,useRoute} from "@react-navigation/native";
+import {StyleSheet,Text, ScrollView,KeyboardAvoidingView, Platform} from "react-native"
+import {useNavigation ,useRoute} from "@react-navigation/native";
 import axios from "axios";
 import AddMessageInput from "./AddMessageInput";
-import Heihgt from "../Heihgt";
 import ChatText from "./ChatText";
-import { FlatList } from "react-native-gesture-handler";
+
 export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
@@ -36,10 +35,7 @@ export default ()=>{
         style={{flex:1}}
         behavior={Platform.OS ==="ios" ? "padding":"height"}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
-        <ScrollView style = {{backgroundColor:"green"}}>
-                    {/* 맵함수를 활용하여 component찍기 */}
-          <Text>테스트</Text>
-        </ScrollView>
+        <ChatText/>
         <AddMessageInput/>
           
           
