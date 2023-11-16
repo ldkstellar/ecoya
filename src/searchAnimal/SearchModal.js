@@ -1,13 +1,14 @@
 import {SafeAreaView,View,TouchableOpacity,TextInput} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import Heihgt from '../Heihgt'
-
+import SearchIcon from '../icons/SearchIcon';
 export default (
     {
-    setModalbtn,
-    search,
-    onSubmitEditing,
-    setSearch})=>{
+      setModalbtn,
+      search,
+      onSubmitEditing,
+      setSearch
+    })=>{
     return(
         <SafeAreaView>
           <TouchableOpacity style={{width:"100%",height:"100%",alignItems:"center"}} onPress={setModalbtn}>
@@ -21,15 +22,14 @@ export default (
                     backgroundColor:"white"
                     }}
                 onPress={()=>setModalbtn()}>
-                <FontAwesome name="search" size={25} color="black"style={{padding:10}} />
+                  <SearchIcon />
                     <TextInput
-                    style={{height:40}} 
-                    placeholder='동식물 검색'
-                    value={search}//완료된 결과 값
-                    onChangeText={setSearch}
-                    onSubmitEditing={onSubmitEditing}
-                    autoFocus={true}/>    
-            
+                      style={{height:40,paddingLeft:10}} 
+                      placeholder='동식물 검색'
+                      value={search}//완료된 결과 값
+                      onChangeText={setSearch}
+                      onSubmitEditing={onSubmitEditing}
+                      autoFocus={true}/>
             </View>
             
           </TouchableOpacity>

@@ -4,12 +4,13 @@ import {useNavigation ,useRoute} from "@react-navigation/native";
 import axios from "axios";
 import AddMessageInput from "./AddMessageInput";
 import ChatText from "./ChatText";
+import { useMessage } from "./use-Message";
 
 export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
-    const [message, setMessage] = useState(()=>'');
     const id = route.params.header.creatureId;
+    const {message,updateMessage} = useMessage();
 
     async function fetchData() {  
         try {
@@ -20,8 +21,7 @@ export default ()=>{
           console.error('Error:', error);
         }
     }
-    
-    
+
     useEffect(() => {
         navigation.setOptions({
             title:route.params.header.creatureName
@@ -35,7 +35,7 @@ export default ()=>{
         style={{flex:1}}
         behavior={Platform.OS ==="ios" ? "padding":"height"}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
-        <ChatText/>
+        <ChatText message={message}/>
         <AddMessageInput/>
           
           
