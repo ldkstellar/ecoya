@@ -1,11 +1,11 @@
-import {useEffect, useState} from "react"
-import {StyleSheet,Text, ScrollView,KeyboardAvoidingView, Platform} from "react-native"
+import {useEffect} from "react"
+import {StyleSheet,KeyboardAvoidingView, Platform} from "react-native"
 import {useNavigation ,useRoute} from "@react-navigation/native";
 import axios from "axios";
 import AddMessageInput from "./AddMessageInput";
 import ChatText from "./ChatText";
 import { useMessage } from "./use-Message";
-
+import Height from "../Heihgt"
 export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();

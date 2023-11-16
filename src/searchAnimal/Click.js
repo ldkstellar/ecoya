@@ -5,7 +5,6 @@ export default({title,borderWidth})=>{
 
 
     return(
-      
           <TouchableOpacity style={{
             backgroundColor:"white",
             borderWidth:borderWidth,

@@ -1,5 +1,5 @@
 import {SafeAreaView,View,TouchableOpacity,TextInput} from 'react-native'
-import { FontAwesome } from '@expo/vector-icons';
+
 import Heihgt from '../Heihgt'
 import SearchIcon from '../icons/SearchIcon';
 export default (
@@ -21,7 +21,7 @@ export default (
                     borderWidth:0.3,
                     backgroundColor:"white"
                     }}
-                onPress={()=>setModalbtn()}>
+                  onPress={()=>setModalbtn()}>
                   <SearchIcon />
                     <TextInput
                       style={{height:40,paddingLeft:10}} 

@@ -17,8 +17,10 @@ import GreenMypageIcon from './src/icons/GreenMyPageIcon';
 import GreenMapIcon from './src/icons/GreenMapIcon';
 
 SplashScreen.preventAutoHideAsync();
+
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
+
 const MypageScreen = ()=>(<Text>Mypage</Text>);
 const NotificationScreen = ()=>(
   <Text>나의 도감들입니다.</Text>
@@ -91,7 +93,9 @@ const Home =()=>{
 
 export default function App() {
   useEffect(()=>{
-    setTimeout(()=>SplashScreen.hideAsync()
+
+    setTimeout(()=>{
+      return SplashScreen.hideAsync();}
     ,1000);
   },[]);
   
@@ -108,10 +112,9 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
     flex: 1,
     backgroundColor: '#fff',
-    
   },
 });
 

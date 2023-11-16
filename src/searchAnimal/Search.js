@@ -11,7 +11,6 @@ export default()=>{
             setSearch,
             setModalbtn,
             } = useSearch();
-    const borderWidth = 0.3
     return( 
             <TouchableOpacity 
                 style={{
