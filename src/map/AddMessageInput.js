@@ -5,7 +5,6 @@ import MessageIcon from "../icons/MessageIcon"
 export default ({value,onchangetext,onSubmitEditing,onFocus})=>{//parameter가 undefined가 되는 이유는 객체만 넘겨서 그럼 객체의 item을 반환해야 한다.
         return(  
             <View style={style.Frame}>
-                
                 <TextInput
                     style={style.input}
                     value={value}

@@ -10,9 +10,9 @@ export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
-    const {message,updateMessage} = useMessage();
+    const {message , updateMessage} = useMessage();
 
-    async function fetchData() {  
+    async function fetchData(){  
         try {
           const url = `http://34.127.0.240:8080/send/${id}`;
           const response = await axios.post(url,message);
@@ -35,10 +35,8 @@ export default ()=>{
         style={{flex:1}}
         behavior={Platform.OS ==="ios" ? "padding":"height"}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
-        <ChatText message={message}/>
+        <ChatText message={message} data={route.params.header}/>
         <AddMessageInput/>
-          
-          
        </KeyboardAvoidingView>
 
     )
