@@ -1,16 +1,21 @@
-import {useEffect} from "react"
-import {StyleSheet,KeyboardAvoidingView, Platform} from "react-native"
+import {useEffect, useState} from "react"
+import {StyleSheet,KeyboardAvoidingView, TouchableOpacity,TextInput,View,Platform} from "react-native"
 import {useNavigation ,useRoute} from "@react-navigation/native";
 import axios from "axios";
+import MessageIcon from "../icons/MessageIcon"
 import AddMessageInput from "./AddMessageInput";
 import ChatText from "./ChatText";
 import { useMessage } from "./use-Message";
-import Height from "../Heihgt"
+
 export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
-    const {message , updateMessage} = useMessage();
+    const {
+      message,
+      updateMessage
+    } = useMessage();
+    const [tmpMessage,setTempMessage] = useState('');
 
     async function fetchData(){  
         try {
@@ -21,12 +26,15 @@ export default ()=>{
           console.error('Error:', error);
         }
     }
-
-    useEffect(() => {
+    
+    useEffect(()=>{
         navigation.setOptions({
             title:route.params.header.creatureName
         });
-      }, []);
+    },[]);
+
+     
+     
 
    
     return(
@@ -36,17 +44,56 @@ export default ()=>{
         behavior={Platform.OS ==="ios" ? "padding":"height"}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
         <ChatText message={message} data={route.params.header}/>
-        <AddMessageInput/>
+        <View style={style.Frame}>
+                <TextInput
+                    style={style.input}
+                    value={tmpMessage}
+                    onChangeText={setTempMessage}
+                    placeholder="메세지를 입력하세요"
+                    onSubmitEditing={()=>{}}
+                    blurOnSubmit={false}
+                    
+                />
+                <TouchableOpacity onPress={()=>{
+                  updateMessage(tmpMessage);
+                  setTempMessage('');}} style={style.btn}>
+                    <MessageIcon/>
+                </TouchableOpacity>
+            </View>
        </KeyboardAvoidingView>
 
     )
 }
 
 
-const Style = StyleSheet.create({
+const style = StyleSheet.create({
     title:{
         flexDirection:"row",
         flex:1,
         justifyContent:"center"
     }
-});
+    ,
+      Frame:{
+          height:48.7,
+          flexDirection:"row",
+          backgroundColor:"#FFF",
+          borderTopWidth:"0.8",
+          justifyContents:"center",
+          alignItems:"center",
+          borderColor:"#666666",
+      },
+  
+      input:{
+          marginLeft:12,
+          width:298,
+          height:32,
+          borderRadius:100,
+          backgroundColor:"#EDEDED",
+          paddingLeft:10
+      },
+      btn:{backgroundColor:"#F2F6C4",marginLeft:8,width:60,height:32,borderWidth:0.8,borderColor:"#FFFF",borderRadius:100, justifyContent:"center",alignItems:"center"
+
+      }
+      
+  
+  });

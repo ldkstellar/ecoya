@@ -1,14 +1,19 @@
 import { useState } from "react";
 
 export const useMessage = ()=>{
-    const [message,setMessage] = useState(()=>[]);
+    const [message,setMessage] = useState([]);
     const updateMessage = (value)=>{
-        setMessage([...message],value);
+       let tmp = [...message];
+       tmp.push(value);
+       setMessage(tmp);
+       
+       
     }
 
     return{
         message,
-        updateMessage
+        updateMessage,
+        setMessage,
 
     }
 
