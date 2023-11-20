@@ -60,7 +60,7 @@ export default ({closeModal,id})=>{
                 </TouchableOpacity>
               </View>
               <Heihgt height={6}/>
-                <Text style={{fontSize:12,fontWeight:400,marginRight:20,color:"#D9D9D9"}} numberOfLines={0}>도로뇽과의 동물. 몸의 길이는 15cm 정도이며,갈색 바탕의 둥근 무늬가 있다</Text>
+                <Text style={{fontSize:12,fontWeight:400,marginRight:20,color:"#D9D9D9"}} numberOfLines={0}>{animalData.creatureInformation.length>20?animalData.creatureInformation.slice(0,50):animalData.creatureInformation}</Text>
           </View>
       </View>
       </View>

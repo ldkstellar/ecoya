@@ -3,7 +3,6 @@ import {StyleSheet,KeyboardAvoidingView, TouchableOpacity,TextInput,View,Platfor
 import {useNavigation ,useRoute} from "@react-navigation/native";
 import axios from "axios";
 import MessageIcon from "../icons/MessageIcon"
-import AddMessageInput from "./AddMessageInput";
 import ChatText from "./ChatText";
 import { useMessage } from "./use-Message";
 
@@ -12,32 +11,51 @@ export default ()=>{
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
     const {
-      message,
-      updateMessage
+        message,
+        updateMessage,
+        getMessage,
+        updateGetMessage,
     } = useMessage();
     const [tmpMessage,setTempMessage] = useState('');
-
-    async function fetchData(){  
+    useEffect(()=>{
+        console.log(message);
+    },[message]);
+    async function postData(message){  
         try {
           const url = `http://34.127.0.240:8080/send/${id}`;
-          const response = await axios.post(url,message);
+      
+          console.log(message);
+          const response = await axios.post(url,{content:message});
+          return response;
+        }
+      
+        catch (error){
+          console.error('Error:', error);
+        }
+    };
+    async function getData(){  
+        try {
+          const url = `http://34.127.0.240:8080/send/${id}`;
+          const response = await axios.get(url);
+          console.log(response.data);
+          let temp = [...getMessage]; 
+          temp.push (response.data);
+          updateGetMessage(temp);
         }
         catch (error){
           console.error('Error:', error);
         }
-    }
+    };
+
     
     useEffect(()=>{
         navigation.setOptions({
             title:route.params.header.creatureName
         });
     },[]);
-
-     
-     
-
    
     return(
+    
         // KeyboardVertical offset으로 높이를 조절한다.
        <KeyboardAvoidingView
         style={{flex:1}}
@@ -55,11 +73,15 @@ export default ()=>{
                     
                 />
                 <TouchableOpacity onPress={()=>{
-                  updateMessage(tmpMessage);
-                  setTempMessage('');}} style={style.btn}>
+                    postData(tmpMessage);
+                    updateMessage(tmpMessage);
+                    setTempMessage('');
+                    getData();
+                    }} style={style.btn}>
                     <MessageIcon/>
                 </TouchableOpacity>
             </View>
+           
        </KeyboardAvoidingView>
 
     )

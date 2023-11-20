@@ -1,4 +1,5 @@
 import {ScrollView,Text, View,Image, TouchableOpacity} from 'react-native'
+import { useRef } from 'react';
 import Heihgt from '../Heihgt'
 
 export default ({message,data})=>{

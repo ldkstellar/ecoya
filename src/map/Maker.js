@@ -34,7 +34,15 @@ const Markers = () => {
     latitudeDelta: 1,
     longitudeDelta: 1});
   const [key, setKey] = useState(0);
-  const [location, setLocation] = useState(null);
+
+  const [initLocation, setLocation] = useState(
+    {
+      latitude: 36.47252222,
+      longitude: 127.235,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    }
+  );
   const getLocationAsync = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
@@ -43,13 +51,13 @@ const Markers = () => {
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    setLocation(location);
+    setLocation({...initLocation,['latitude']:location.coords.latitude,['longitude']:location.coords.longitude});
   };
   useEffect(() => {
     getLocationAsync();
     
   }, []);
-  useEffect(()=>console.log(location),[location]);
+  useEffect(()=>console.log(initLocation),[initLocation]);
   
   useEffect(
     () => {
