@@ -27,7 +27,7 @@ export default ({closeModal,id})=>{
   if (animalData === null){
     return null; 
   } //데이터가 없을 때 렌더링하지 않음
-    
+    console.log(animalData.creatureInformation);
     return(
     <TouchableOpacity
       onPress={closeModal}
@@ -59,7 +59,7 @@ export default ({closeModal,id})=>{
                     <Text style={{fontSize:12,color:"#FFF"}}>채팅하기</Text>
                 </TouchableOpacity>
               </View>
-              <Heihgt height={6}/>
+              <Heihgt height={5}/>
                 <Text style={{fontSize:12,fontWeight:400,marginRight:20,color:"#D9D9D9"}} numberOfLines={0}>{animalData.creatureInformation.length>20?animalData.creatureInformation.slice(0,50):animalData.creatureInformation}</Text>
           </View>
       </View>

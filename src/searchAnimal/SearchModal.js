@@ -11,7 +11,12 @@ export default (
     })=>{
     return(
         <SafeAreaView>
-          <TouchableOpacity style={{width:"100%",height:"100%",alignItems:"center"}} onPress={setModalbtn}>
+          <TouchableOpacity style={{
+            width:"100%",
+            height:"100%",
+            alignItems:"center"
+            }} 
+            onPress={setModalbtn}>
             <Heihgt height={10}/>
             <View
                 style={{
@@ -22,14 +27,16 @@ export default (
                     backgroundColor:"white"
                     }}
                   onPress={()=>setModalbtn()}>
+
                   <SearchIcon />
-                    <TextInput
-                      style={{height:40,paddingLeft:10}} 
-                      placeholder='동식물 검색'
-                      value={search}//완료된 결과 값
-                      onChangeText={setSearch}
-                      onSubmitEditing={onSubmitEditing}
-                      autoFocus={true}/>
+                
+                  <TextInput
+                    style={{height:40,paddingLeft:10}} 
+                    placeholder='동식물 검색'
+                    value={search}//완료된 결과 값
+                    onChangeText={setSearch}
+                    onSubmitEditing={onSubmitEditing}
+                    autoFocus={true}/>
             </View>
             
           </TouchableOpacity>

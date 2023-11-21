@@ -17,14 +17,12 @@ export default ()=>{
         updateGetMessage,
     } = useMessage();
     const [tmpMessage,setTempMessage] = useState('');
-    useEffect(()=>{
-        console.log(message);
-    },[message]);
+  
     async function postData(message){  
         try {
           const url = `http://34.127.0.240:8080/send/${id}`;
       
-          console.log(message);
+          
           const response = await axios.post(url,{content:message});
           return response;
         }
@@ -70,10 +68,10 @@ export default ()=>{
                     
                 />
                 <TouchableOpacity onPress={()=>{
-                    postData(tmpMessage);
+                    postData(tmpMessage).then(getData());
                     updateMessage(tmpMessage);
                     setTempMessage('');
-                    getData();
+                    
                     }} style={style.btn}>
                     <MessageIcon/>
                 </TouchableOpacity>

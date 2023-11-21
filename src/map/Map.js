@@ -8,9 +8,7 @@ export default({animalData})=>{
     
       return (
         <View style={{ flex:1,borderWidth:0.3}}>
-
           <Markers animalData={animalData}/>
-           
         </View>
       );
     }

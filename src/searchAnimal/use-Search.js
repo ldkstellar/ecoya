@@ -8,9 +8,11 @@ export const useSearch = ()=>{
     const setModalbtn = ()=>{
         setModal(!modalBtn);
     }
+    
     const btnChange =()=>{
         setfullbutton(!fullbutton);
     }
+
     const onSubmitEditing = ()=>{
         if (!search) {
             return;

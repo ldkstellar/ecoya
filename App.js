@@ -77,7 +77,7 @@ const Home =()=>{
     options={{
       title: "마이페이지",
       tabBarIcon: ({focused}) =>{ 
-        const myColor = focused?"#1AAB0E":"#333333";
+      const myColor = focused?"#1AAB0E":"#333333";
 
         return(
           <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
