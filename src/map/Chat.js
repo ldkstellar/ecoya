@@ -35,12 +35,9 @@ export default ()=>{
     };
     async function getData(){  
         try {
-          const url = `http://34.127.0.240:8080/send/${id}`;
+          const url = `http://34.127.0.240:8080/getLastResponse`;
           const response = await axios.get(url);
-          console.log(response.data);
-          let temp = [...getMessage]; 
-          temp.push (response.data);
-          updateGetMessage(temp);
+          updateGetMessage(response.data);
         }
         catch (error){
           console.error('Error:', error);
@@ -61,7 +58,7 @@ export default ()=>{
         style={{flex:1}}
         behavior={Platform.OS ==="ios" ? "padding":"height"}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
-        <ChatText message={message} data={route.params.header}/>
+        <ChatText message={message} getMessage={getMessage} data={route.params.header}/>
         <View style={style.Frame}>
                 <TextInput
                     style={style.input}
@@ -113,7 +110,16 @@ const style = StyleSheet.create({
           backgroundColor:"#EDEDED",
           paddingLeft:10
       },
-      btn:{backgroundColor:"#F2F6C4",marginLeft:8,width:60,height:32,borderWidth:0.8,borderColor:"#FFFF",borderRadius:100, justifyContent:"center",alignItems:"center"
+      btn:{
+        backgroundColor:"#F2F6C4",
+        marginLeft:8,
+        width:60,
+        height:32,
+        borderWidth:0.8,
+        borderColor:"#FFFF",
+        borderRadius:100,
+        justifyContent:"center",
+        alignItems:"center"
 
       }
       

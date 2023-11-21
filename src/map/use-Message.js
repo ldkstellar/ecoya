@@ -11,8 +11,9 @@ export const useMessage = ()=>{
        
     }
     const updateGetMessage = (value)=>{
+
         let temp = [...getMessage];
-        temp.push(value);
+        temp.push(value.slice(0,30));
         setGetmessage(temp);
     }
 
