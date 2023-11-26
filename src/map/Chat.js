@@ -4,7 +4,7 @@ import {useNavigation ,useRoute} from "@react-navigation/native";
 import axios from "axios";
 import MessageIcon from "../icons/MessageIcon"
 import ChatText from "./ChatText";
-import { useMessage } from "./use-Message";
+import {useMessage} from "./use-Message";
 
 export default ()=>{
     const route = useRoute();
@@ -16,33 +16,34 @@ export default ()=>{
         getMessage,
         updateGetMessage,
     } = useMessage();
-    const [tmpMessage,setTempMessage] = useState('');
+    
+    const [tmpMessage,setTempMessage] = useState(()=>'');
   
     async function postData(message){  
         try {
-          const url = `http://34.127.0.240:8080/send/${id}`;
-      
-          
-          const response = await axios.post(url,{content:message});
-          return response;
+            const url = `http://34.127.0.240:8080/send/${id}`;          
+            axios.post(url,{content:message});
         }
-      
+
         catch (error){
-          console.error('Error:', error);
+          console.error('postError:', error);
         }
     };
-    async function getData(){  
+
+    async function getData(){
+
         try {
           const url = `http://34.127.0.240:8080/getLastResponse`;
           const response = await axios.get(url);
           updateGetMessage(response.data);
+          
         }
+
         catch (error){
-          console.error('Error:', error);
+          console.error('getError:', error);
         }
     };
 
-    
     useEffect(()=>{
         navigation.setOptions({
             title:route.params.header.creatureName
@@ -50,13 +51,12 @@ export default ()=>{
     },[]);
    
     return(
-    
         // KeyboardVertical offset으로 높이를 조절한다.
        <KeyboardAvoidingView
-        style={{flex:1}}
-        behavior={Platform.OS ==="ios" ? "padding":"height"}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
-        <ChatText message={message} getMessage={getMessage} data={route.params.header}/>
+            style={{flex:1}}
+            behavior={Platform.OS ==="ios" ? "padding":"height"}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
+        <ChatText updateMessage={updateMessage} postData={postData} getData={getData} message={message} getMessage={getMessage} data={route.params.header}/>
         <View style={style.Frame}>
                 <TextInput
                     style={style.input}
@@ -65,30 +65,28 @@ export default ()=>{
                     placeholder="메세지를 입력하세요"
                     onSubmitEditing={()=>{}}
                     blurOnSubmit={false}
-                    
                 />
                 <TouchableOpacity onPress={()=>{
-                    postData(tmpMessage).then(getData());
+                    postData(tmpMessage).then(getData()).catch((error)=>console.log('final error',error))
                     updateMessage(tmpMessage);
                     setTempMessage('');
-                    
                     }} style={style.btn}>
                     <MessageIcon/>
                 </TouchableOpacity>
             </View>
-           
        </KeyboardAvoidingView>
-
-    )
+    );
 }
 
 
 const style = StyleSheet.create({
+
     title:{
         flexDirection:"row",
         flex:1,
         justifyContent:"center"
     }
+
     ,
       Frame:{
           height:48.7,
@@ -118,7 +116,6 @@ const style = StyleSheet.create({
         borderRadius:100,
         justifyContent:"center",
         alignItems:"center"
-
       }
       
   

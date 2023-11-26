@@ -15,12 +15,12 @@ import MypageIcon from './src/icons/MypageIcon';
 import GreenBookIcon from './src/icons/GreenBookIcon';
 import GreenMypageIcon from './src/icons/GreenMyPageIcon';
 import GreenMapIcon from './src/icons/GreenMapIcon';
+import Quiz from './src/map/Quiz';
+import Game from './src/map/Game';
 
 SplashScreen.preventAutoHideAsync();
-
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
-
 const MypageScreen = ()=>(<Text>Mypage</Text>);
 const NotificationScreen = ()=>(
   <Text>나의 도감들입니다.</Text>
@@ -31,8 +31,8 @@ const Home =()=>{
     <Tab.Navigator
     initialRouteName="Home"
     screenOptions={{
-      tabBarShowLabel: false,
-  }}>
+      tabBarShowLabel: false,}}
+    >
 
 <Tab.Screen
   name="Home"
@@ -52,7 +52,8 @@ const Home =()=>{
       </View>
     )
   }
-}}/>
+}}
+/>
 
 <Tab.Screen
   name="Dictionalry"
@@ -64,12 +65,13 @@ const Home =()=>{
 
       return(
         <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-         <Heihgt height={6.44}/>
-         {focused?<GreenBookIcon/>:<Book/>}
+          <Heihgt height={6.44}/>
+          {focused?<GreenBookIcon/>:<Book/>}
           <Text style={{color:myColor}}>생물 도감</Text>
-        </View>
-    )}
-    ,}}/>
+        </View>)
+    },
+  }}
+/>
 
   <Tab.Screen
     name="Mypage"
@@ -79,7 +81,7 @@ const Home =()=>{
       tabBarIcon: ({focused}) =>{ 
       const myColor = focused?"#1AAB0E":"#333333";
 
-        return(
+      return(
           <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
             <Heihgt height={6.44}/>
             {focused?<GreenMypageIcon/>:<MypageIcon/>}
@@ -93,7 +95,6 @@ const Home =()=>{
 
 export default function App() {
   useEffect(()=>{
-
     setTimeout(()=>{
       return SplashScreen.hideAsync();}
     ,1000);
@@ -104,7 +105,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='home' component={Home} options={{title:"뒤로가기",headerShown:false}} />
-          <Stack.Screen name='chat' component={Chat} options={{title:"뒤로가기",}}/>
+          <Stack.Screen name='chat' component={Chat} options={{headerBackTitle:"뒤로가기",headerRight:()=>(<Quiz/>)}}/>
+          <Stack.Screen name='game' component={Game} options={{headerBackTitle:"뒤로가기"}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

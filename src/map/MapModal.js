@@ -21,13 +21,14 @@ export default ({closeModal,id})=>{
   }
 
   useEffect(()=>{
+    
     fetchData();
   }, []); // 처음렌더링 될때 저장
 
   if (animalData === null){
     return null; 
   } //데이터가 없을 때 렌더링하지 않음
-    console.log(animalData.creatureInformation);
+    
     return(
     <TouchableOpacity
       onPress={closeModal}
@@ -98,14 +99,12 @@ const style = StyleSheet.create(
       fontSize:24,
       fontWeight:"bold",
       color:"#333"
-      
     },
 
     specificText:{
       fontSize:12,
       color:"#666",
       marginLeft:10,
-      
       alignSelf:"center"
     },
 

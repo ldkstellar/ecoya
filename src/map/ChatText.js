@@ -1,11 +1,11 @@
+import { useEffect } from 'react';
 import {ScrollView,Text, View,Image, TouchableOpacity,StyleSheet} from 'react-native'
 import Heihgt from '../Heihgt'
 
-export default ({getMessage,message,data})=>{
-    
+export default ({updateMessage,getData,postData,getMessage,message,data})=>{    
     const startText = `안녕! 나는 ${data.creatureName}야.`;
     const secondText = `나에 대해 궁금한 점이 있다면 질문해줘`;
-   
+    
     const renderMessage = ()=>{
         
         return  getMessage.map((value,index)=>{
@@ -13,7 +13,9 @@ export default ({getMessage,message,data})=>{
                 <View key={index}>
                     <View  style={{
                         marginRight:20,
-                        borderRadius:10,
+                        borderTopLeftRadius:10,
+                        borderTopRightRadius:10,
+                        borderBottomLeftRadius:10,
                         width:message[index].length *10 +50,
                         borderColor:"#D9D9D9",
                         height:40,
@@ -25,11 +27,11 @@ export default ({getMessage,message,data})=>{
                         alignSelf:"flex-end",
                         flexDirection:"row"}}>
                         <Text style={{textAlign:"center"}}>{message[index]}</Text> 
-                </View>
+                    </View>
 
-                <View  style={{marginTop:15,marginLeft:20,flexDirection:"row"}}>
+                <View style={{marginTop:15,marginLeft:20,flexDirection:"row"}}>
                     <Image source={{uri:data.imageUrl}} style={{borderRadius:30}} width={50} height={50}/>
-                    <View  style={{
+                    <View style={{
                         borderTopLeftRadius:10,
                         padding:7,borderTopRightRadius:10,
                         borderBottomRightRadius:10,
@@ -48,7 +50,15 @@ export default ({getMessage,message,data})=>{
         const btn = ['서식환경','유형','먹이'];
         return btn.map((e,i)=>{
             return(
-                <TouchableOpacity key={i} style={{
+                <TouchableOpacity 
+                key={i}
+                onPress={()=>{
+                    postData(e).then(getData()).catch((err) => {console.log(err,'err');});
+                    updateMessage(e);
+               }
+                }
+
+                style={{
                     marginLeft:i === 0 ? 87:undefined,marginRight:4,
                     justifyContent:"center",
                     alignItems:"center",
@@ -84,7 +94,7 @@ export default ({getMessage,message,data})=>{
                         height:40,
                         justifyContent:"center"
                     }}>
-                        <Text style={{textAlign:"center"}}>{startText}</Text>
+                        <Text style={{paddingLeft:10,textAlign:"left"}}>{startText}</Text>
                     </View>
             </View>
 
@@ -97,7 +107,7 @@ export default ({getMessage,message,data})=>{
                 height:40,
                 borderWidth:0.8
             }}>
-                <Text style={{textAlign:"center"}}>{secondText}</Text>
+                <Text style={{paddingLeft:10,textAlign:"left"}}>{secondText}</Text>
             </View>
 
             <Heihgt height={10}/>
