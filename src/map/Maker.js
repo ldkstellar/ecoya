@@ -63,7 +63,7 @@ const Markers = () => {
     () => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://34.127.0.240:8080/api/creatures');
+        const response = await axios.get('http://34.145.91.229:8080/api/creatures');
         setanimalData(response.data);
       } 
       catch (error) {

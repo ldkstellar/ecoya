@@ -21,7 +21,7 @@ export default ()=>{
   
     async function postData(message){  
         try {
-            const url = `http://34.127.0.240:8080/send/${id}`;          
+            const url = `http://34.145.91.229:8080/send/${id}`;          
             axios.post(url,{content:message});
         }
 
@@ -33,7 +33,7 @@ export default ()=>{
     async function getData(){
 
         try {
-          const url = `http://34.127.0.240:8080/getLastResponse`;
+          const url = `http://34.145.91.229:8080/getLastResponse`;
           const response = await axios.get(url);
           updateGetMessage(response.data);
           

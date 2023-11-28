@@ -10,11 +10,10 @@ export default ({closeModal,id})=>{
   
   async function fetchData(){  
       try {
-        const url = `http://34.127.0.240:8080/api/creatures/detail/${id}`;
+        const url = `http://34.145.91.229:8080/api/creatures/detail/${id}`;
         const response = await axios.get(url);
         setanimalData(response.data);
       }
-
       catch (error){
         console.error('Error:', error);
       }
