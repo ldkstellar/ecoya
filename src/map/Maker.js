@@ -67,14 +67,14 @@ const Markers = () => {
         setanimalData(response.data);
       } 
       catch (error) {
-        console.error('Error:', error);
+        console.error('MapError:', error);
       }
     }
     fetchData();
   },[]);
 
   if (animalData.length === 0) {
-    return null; 
+    return null;
   }
 
   return (
@@ -85,7 +85,7 @@ const Markers = () => {
       key={key}>
 
       {
-        animalData.map((value, index) =>{  
+        animalData.map((value, index)=>{  
           return(
             <MyMarker key={index} item={value} handleMarkerPress={handleMarkerPress} />
           );

@@ -25,6 +25,11 @@ const MypageScreen = ()=>(<Text>Mypage</Text>);
 const NotificationScreen = ()=>(
   <Text>나의 도감들입니다.</Text>
 );
+const forFade = ({ current }) => ({
+  cardStyle: {
+    opacity: current.progress,
+  },
+});
 
 const Home =()=>{
   return(
@@ -104,9 +109,17 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='home' component={Home} options={{title:"뒤로가기",headerShown:false}} />
+          <Stack.Screen name='home' component={Home} options={{headerShown:false}}/>
           <Stack.Screen name='chat' component={Chat} options={{headerBackTitle:"뒤로가기",headerRight:()=>(<Quiz/>)}}/>
-          <Stack.Screen name='game' component={Game} options={{headerBackTitle:"뒤로가기"}}/>
+          <Stack.Screen name='game' component={Game} options={{
+            headerBackTitle:"뒤로가기",
+            title:"",
+            cardStyle:{
+              backgroundColor:"#FFF"
+            },
+            cardStyleInterpolator:forFade
+          }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

@@ -5,7 +5,6 @@ import Heihgt from '../Heihgt'
 export default ({updateMessage,getData,postData,getMessage,message,data})=>{    
     const startText = `안녕! 나는 ${data.creatureName}야.`;
     const secondText = `나에 대해 궁금한 점이 있다면 질문해줘`;
-    
     const renderMessage = ()=>{
         
         return  getMessage.map((value,index)=>{

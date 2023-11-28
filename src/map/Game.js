@@ -1,13 +1,17 @@
-import { SafeAreaView,View,Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-const Game = ()=>{
-    const navigation = useNavigation();
-   
-    return(
-    
-        <Text>sss</Text>
-   
+import {useState,useEffect} from "react";
+import {SafeAreaView,View,Text} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 
+const Game = ()=>{
+    useEffect(()=>{
+
+    },[])
+
+
+    return(
+        <View style={{justifyContent:"center",alignItems:"center"}}>
+            <Text>sss</Text>
+        </View>
     );
 };
 
