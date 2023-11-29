@@ -5,8 +5,8 @@ export const useMapModal = () =>{
     const [selectedMarkerData, setSelectedMarkerData] = useState([]);
     
     const handleMarkerPress = (data) => {
-         setModalVisible(true)
-        setSelectedMarkerData(data);
+            setModalVisible(true)
+            setSelectedMarkerData(data);
     };
      
     const closeModal = () => {

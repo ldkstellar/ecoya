@@ -17,10 +17,13 @@ import GreenMypageIcon from './src/icons/GreenMyPageIcon';
 import GreenMapIcon from './src/icons/GreenMapIcon';
 import Quiz from './src/map/Quiz';
 import Game from './src/map/Game';
+import useLoad from './src/map/use-Load';
 
 SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
+
+
 const MypageScreen = ()=>(<Text>Mypage</Text>);
 const NotificationScreen = ()=>(
   <Text>나의 도감들입니다.</Text>
