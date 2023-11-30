@@ -6,11 +6,13 @@ import MessageIcon from "../icons/MessageIcon"
 import ChatText from "./ChatText";
 import {useMessage} from "./use-Message";
 import url from "./Url";
+
 export default ()=>{
     
     const route = useRoute();
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
+    
     const {
         message,
         updateMessage,
@@ -34,10 +36,9 @@ export default ()=>{
     async function getData(){
 
         try {
-          const url = `http://34.145.91.229:8080/getLastResponse`;
-          const response = await axios.get(url);
-          updateGetMessage(response.data);
-          
+          const myUrl = `${url}/getLastResponse`;
+          const response = await axios.get(myUrl);
+          updateGetMessage(response.data); 
         }
 
         catch (error){

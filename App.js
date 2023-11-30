@@ -17,12 +17,24 @@ import GreenMypageIcon from './src/icons/GreenMyPageIcon';
 import GreenMapIcon from './src/icons/GreenMapIcon';
 import Quiz from './src/map/Quiz';
 import Game from './src/map/Game';
-import useLoad from './src/map/use-Load';
+import Loading from './src/map/Loading';
+import BackBtn from './src/icons/BackButton';
+import Giveup from './src/map/Giveup';
 
 SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
-
+const config = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
 
 const MypageScreen = ()=>(<Text>Mypage</Text>);
 const NotificationScreen = ()=>(
@@ -114,16 +126,21 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name='home' component={Home} options={{headerShown:false}}/>
           <Stack.Screen name='chat' component={Chat} options={{headerBackTitle:"뒤로가기",headerRight:()=>(<Quiz/>)}}/>
-          {/* <Stack.Screen name='loading' component={Loading} options={{}}/> */}
+          <Stack.Screen name='loading' component={Loading} options={{
+            headerShown:false,
+            transitionSpec: {
+              open:config,
+              close:config,
+            }}}/>
           <Stack.Screen name='game' component={Game} options={{headerShown:false,
-            headerBackTitle:"뒤로가기",
+            
             title:"",
             cardStyle:{
               backgroundColor:"#FFF"
             },
             cardStyleInterpolator:forFade
-          }}
-          />
+          }}/>
+         
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

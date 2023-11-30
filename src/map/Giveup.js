@@ -1,16 +1,17 @@
-import { useState} from "react";
+import { useState,useEffect } from "react";
 
 import { useNavigation } from "@react-navigation/native";
 import {TouchableOpacity} from "react-native"
 import QuizIcon from "../icons/QuizIcon";
+import BackBtn from "../icons/BackButton";
 
-const Quiz = ()=>{
+const Giveup = ()=>{
     const navigation = useNavigation();
     const [btn,setBtn] = useState(false);
     return(
-        <TouchableOpacity style={{paddingRight:10}} onPress={()=>navigation.navigate('loading')}>
-           <QuizIcon/>
+        <TouchableOpacity style={{paddingRight:10}} onPress={()=>navigation.navigate('home')}>
+           <BackBtn/>
         </TouchableOpacity>
     );
 };
-export default Quiz;
+export default Giveup;
