@@ -5,8 +5,9 @@ import axios from "axios";
 import MessageIcon from "../icons/MessageIcon"
 import ChatText from "./ChatText";
 import {useMessage} from "./use-Message";
-
+import url from "./Url";
 export default ()=>{
+    
     const route = useRoute();
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
@@ -21,8 +22,8 @@ export default ()=>{
   
     async function postData(message){  
         try {
-            const url = `http://34.145.91.229:8080/send/${id}`;          
-            axios.post(url,{content:message});
+            const myUrl = `${url}/${id}`;          
+            axios.post(myUrl,{content:message});
         }
 
         catch (error){

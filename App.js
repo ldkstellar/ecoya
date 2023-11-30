@@ -114,7 +114,8 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name='home' component={Home} options={{headerShown:false}}/>
           <Stack.Screen name='chat' component={Chat} options={{headerBackTitle:"뒤로가기",headerRight:()=>(<Quiz/>)}}/>
-          <Stack.Screen name='game' component={Game} options={{
+          {/* <Stack.Screen name='loading' component={Loading} options={{}}/> */}
+          <Stack.Screen name='game' component={Game} options={{headerShown:false,
             headerBackTitle:"뒤로가기",
             title:"",
             cardStyle:{

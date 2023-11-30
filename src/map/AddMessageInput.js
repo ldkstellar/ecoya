@@ -2,7 +2,6 @@ import React from "react"
 import {TextInput,View,TouchableOpacity,StyleSheet} from "react-native"
 import MessageIcon from "../icons/MessageIcon"
 import { useState } from "react"
-
 export default ({updateMessage})=>{ //parameter가 undefined가 되는 이유는 객체만 넘겨서 그럼 객체의 item을 반환해야 한다.
     const [input ,setInput] = useState(''); 
     

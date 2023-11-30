@@ -4,7 +4,6 @@ export default({mykey,setKey})=>{
     const click = () =>{
         setKey(mykey+1);
     }
-    
     return(
         <TouchableOpacity onPress={click} style={{
             position:"absolute",

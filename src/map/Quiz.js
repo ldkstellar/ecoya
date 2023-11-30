@@ -11,8 +11,6 @@ const Quiz = ()=>{
         <TouchableOpacity style={{paddingRight:10}} onPress={()=>navigation.navigate('game')}>
            <QuizIcon/>
         </TouchableOpacity>
-        
-
-    )
+    );
 };
 export default Quiz;

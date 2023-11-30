@@ -3,15 +3,15 @@ import {TouchableOpacity,View,Text,Image,StyleSheet,} from "react-native"
 import Heihgt from "../Heihgt"
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
-
+import url from "./Url";
 export default ({closeModal,id})=>{
   const navigation = useNavigation();
   const [animalData,setanimalData] = useState(()=>null);
   
   async function fetchData(){  
       try {
-        const url = `http://34.145.91.229:8080/api/creatures/detail/${id}`;
-        const response = await axios.get(url);
+        const myUrl = `${url}/api/creatures/detail/${id}`;
+        const response = await axios.get(myUrl);
         setanimalData(response.data);
       }
       catch (error){

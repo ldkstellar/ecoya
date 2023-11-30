@@ -8,6 +8,7 @@ import { useMapModal } from "./use-MapModal";
 import MapModal from "./MapModal";
 import Refresh from "./Refresh";
 import * as Location from 'expo-location';
+import url from "./Url";
 const MyMarker = ({ item,handleMarkerPress }) => {
   return (
     <Marker
@@ -51,7 +52,11 @@ const Markers = () => {
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    setLocation({...initLocation,['latitude']:location.coords.latitude,['longitude']:location.coords.longitude});
+    setLocation(
+      {...initLocation,
+        ['latitude']:location.coords.latitude,
+        ['longitude']:location.coords.longitude
+      });
   };
   useEffect(() => {
     getLocationAsync();
@@ -63,7 +68,7 @@ const Markers = () => {
     () => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://34.145.91.229:8080/api/creatures');
+        const response = await axios.get(`${url}/api/creatures`);
         setanimalData(response.data);
       } 
       catch (error) {
@@ -79,7 +84,7 @@ const Markers = () => {
 
   return (
     <MapView
-      style={{ width: "100%", height: "100%" }}
+      style={{width: "100%",height: "100%" }}
       initialRegion={region}
       region={region}
       key={key}>
