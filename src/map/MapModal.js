@@ -53,6 +53,7 @@ export default ({closeModal,id})=>{
                   onPress={()=>{
                       closeModal();
                       navigation.navigate('chat',{header:animalData});
+                     
                     }
                   }
                   style={style.specific.chatBtn}>

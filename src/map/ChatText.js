@@ -6,8 +6,7 @@ export default ({updateMessage,getData,postData,getMessage,message,data})=>{
     const startText = `안녕! 나는 ${data.creatureName}야.`;
     const secondText = `나에 대해 궁금한 점이 있다면 질문해줘`;
     const renderMessage = ()=>{
-        
-        return  getMessage.map((value,index)=>{
+        return getMessage.map((value,index)=>{
             return(
                 <View key={index}>
                     <View  style={{
@@ -54,7 +53,7 @@ export default ({updateMessage,getData,postData,getMessage,message,data})=>{
                 onPress={()=>{
                     postData(e).then(getData()).catch((err) => {console.log(err,'err');});
                     updateMessage(e);
-               }
+                }
                 }
 
                 style={{
@@ -115,7 +114,6 @@ export default ({updateMessage,getData,postData,getMessage,message,data})=>{
                 {myBtn()}  
             </View>
             {renderMessage(getMessage)}
-     
         </ScrollView>
 
     );

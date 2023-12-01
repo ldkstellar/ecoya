@@ -3,10 +3,11 @@ import {View,Text,StyleSheet, TouchableOpacity, ImageBackground} from "react-nat
 import {useNavigation} from "@react-navigation/native";
 import Heihgt from "../Heihgt";
 import Giveup from "./Giveup";
-
+import axios from "axios";
 const Game = ()=>{
     const navigation = useNavigation();
     const [quizContent,setQuizContent] = useState(()=>{});
+     
     return(
         <>
         <Giveup/>
