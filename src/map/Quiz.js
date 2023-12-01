@@ -1,5 +1,4 @@
 import { useState} from "react";
-
 import { useNavigation } from "@react-navigation/native";
 import {TouchableOpacity} from "react-native"
 import QuizIcon from "../icons/QuizIcon";

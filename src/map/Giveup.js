@@ -1,8 +1,6 @@
-import { useState,useEffect } from "react";
-
+import { useState} from "react";
 import { useNavigation } from "@react-navigation/native";
 import {TouchableOpacity} from "react-native"
-import QuizIcon from "../icons/QuizIcon";
 import BackBtn from "../icons/BackButton";
 
 const Giveup = ()=>{

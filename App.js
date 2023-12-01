@@ -18,8 +18,7 @@ import GreenMapIcon from './src/icons/GreenMapIcon';
 import Quiz from './src/map/Quiz';
 import Game from './src/map/Game';
 import Loading from './src/map/Loading';
-import BackBtn from './src/icons/BackButton';
-import Giveup from './src/map/Giveup';
+
 
 SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
