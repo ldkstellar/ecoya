@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+
 import {ScrollView,Text, View,Image, TouchableOpacity,StyleSheet} from 'react-native'
 import Heihgt from '../Heihgt'
 
@@ -52,8 +52,7 @@ export default ({updateMessage,getData,postData,getMessage,message,data})=>{
                 key={i}
                 onPress={()=>{
                     postData(e).then(getData()).catch((err) => {console.log(err,'err');});
-                    updateMessage(e);
-                }
+                    updateMessage(e);}
                 }
 
                 style={{

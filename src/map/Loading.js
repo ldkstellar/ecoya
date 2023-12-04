@@ -12,7 +12,7 @@ const Loading =()=>{
     useEffect(()=>{
         setTimeout(()=>{
             navigation.navigate('game',{creatureName:creature,creatureId:id});
-        },1500);
+        },1000);
     },[]);
     return(
         <ImageBackground 

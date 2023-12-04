@@ -58,7 +58,15 @@ export default ()=>{
             style={{flex:1}}
             behavior={Platform.OS ==="ios" ? "padding":"height"}
             keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
-        <ChatText updateMessage={updateMessage} postData={postData} getData={getData} message={message} getMessage={getMessage} data={route.params.header}/>
+        <ChatText 
+            updateMessage={updateMessage} 
+            postData={postData} 
+            getData={getData} 
+            message={message}
+            getMessage={getMessage}
+            data={route.params.header}
+        />
+
         <View style={style.Frame}>
                 <TextInput
                     style={style.input}
@@ -69,7 +77,8 @@ export default ()=>{
                     blurOnSubmit={false}
                 />
                 <TouchableOpacity onPress={()=>{
-                    postData(tmpMessage).then(getData()).catch((error)=>console.log('final error',error))
+                    postData(tmpMessage).then(getData()).catch(
+                        (error)=>console.log('final error',error));    
                     updateMessage(tmpMessage);
                     setTempMessage('');
                     }} style={style.btn}>
