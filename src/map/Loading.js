@@ -4,16 +4,15 @@ import { Text,ImageBackground } from "react-native";
 import Heihgt from "../Heihgt";
 const Loading =()=>{
     const route = useRoute();
-    
-    console.log(route.params);
     const {creature,id} = route.params;
-    
     const navigation = useNavigation();
+
     useEffect(()=>{
         setTimeout(()=>{
             navigation.navigate('game',{creatureName:creature,creatureId:id});
         },1000);
     },[]);
+
     return(
         <ImageBackground 
                     resizeMode="cover"

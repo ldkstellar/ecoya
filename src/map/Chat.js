@@ -24,7 +24,7 @@ export default ()=>{
   
     async function postData(message){  
         try {
-            const myUrl = `${url}/${id}`;          
+            const myUrl = `${url}/send/${id}`;          
             axios.post(myUrl,{content:message});
         }
 
