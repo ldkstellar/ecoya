@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {View,Text,StyleSheet, TouchableOpacity} from "react-native";
 import {useNavigation,useRoute} from "@react-navigation/native";
 import Heihgt from "../Heihgt";
@@ -9,29 +9,56 @@ const Game = ()=>{
     const navigation = useNavigation();
     const route = useRoute();
     const {creatureName,creatureId} = route.params;
-    
     const [quizContent,setQuizContent] = useState(()=>{});
-    const [quizNum,setQuiznum] =  useState(1);
+    const [quizNum,setQuiznum] = useState(1);
+    const userAnswer = {
+        userAnswer:undefined,
+        creatureId:creatureId,
+        quizNumber:quizNum
+    };
 
-    async function fetchGetData(){  
+    const click = (creatureId,quizNum,answer)=>{
+        fetchPostData(creatureId,quizNum,answer);
+        setQuiznum(quizNum+1);
+    }
+
+    async function fetchGetData(id,quiznum){  
         try {
-          const myUrl = `${url}/api/creatureQuiz/${creatureId}/${quizNum}`;
+          const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
           const response = await axios.get(myUrl);
           setQuizContent(response.data);
-          setQuiznum(quizNum+1);
-
         }
         catch (error){
           console.error('Error:', error);
         }
     }
-     const  fetchPostData = async ()=>{
 
+    const fetchPostData = (id,quiznum,answer)=>{
+        try {
+            const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
+            let tmp = {...userAnswer};
+            tmp.userAnswer = answer;
+            console.log(tmp);
+            const response =  axios.post(myUrl,userAnswer); 
+        }
+        catch (error){
+            console.error('postError',error);
+        }
     }
 
-    useState(()=>{
-        fetchGetData();
-    },[]);
+    useEffect(()=>{
+        fetchGetData(creatureId,quizNum);    
+    },[quizNum]);
+    
+    if (quizNum === 4) {
+        return(
+        <>
+            <Text>퀴즈 끝</Text>
+        </>
+            
+        )
+        
+    }
 
     return(
         <>
@@ -67,12 +94,14 @@ const Game = ()=>{
             </View>
 
             <Heihgt height={202}/>
-            <TouchableOpacity style={style.answer}>
+            <TouchableOpacity style={style.answer} 
+                onPress={()=>click(creatureId,quizNum,1)
+            }>
                 <Text style={{textAlign:"center"}}>올바른 말을 하고 있어요!</Text>
             </TouchableOpacity>
 
             <Heihgt height={12}/>
-            <TouchableOpacity style={style.answer}>
+            <TouchableOpacity style={style.answer} onPress={()=>click(creatureId,quizNum,0)}>
                 <Text style={{textAlign:"center"}}>잘못된 말을 하고 있는 거 같아요</Text>
             </TouchableOpacity>
         </View>
