@@ -8,7 +8,7 @@ import { useMapModal } from "./use-MapModal";
 import MapModal from "./MapModal";
 import Refresh from "./Refresh";
 import * as Location from 'expo-location';
-import url from "./Url";
+import url from "../Url";
 const MyMarker = ({ item,handleMarkerPress }) => {
   return (
     <Marker
@@ -108,6 +108,7 @@ const Markers = () => {
           backdropTransitionInTiming={800}
           backdropTransitionOutTiming={800}
           transparent={true}
+          backdropColor="yellow"
           visible={isModalVisible}
         >
             

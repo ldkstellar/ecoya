@@ -3,7 +3,7 @@ import {TouchableOpacity,View,Text,Image,StyleSheet,} from "react-native"
 import Heihgt from "../Heihgt"
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
-import url from "./Url";
+import url from "../Url";
 export default ({closeModal,id})=>{
   const navigation = useNavigation();
   const [animalData,setanimalData] = useState(()=>null);

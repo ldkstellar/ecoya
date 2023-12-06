@@ -1,11 +1,18 @@
 import {useEffect, useState} from "react";
-import {View,Text,StyleSheet, TouchableOpacity} from "react-native";
+import Modal  from "react-native-modal";
+import {View,Text,StyleSheet, TouchableOpacity, ImageBackground} from "react-native";
 import {useNavigation,useRoute} from "@react-navigation/native";
 import Heihgt from "../Heihgt";
 import Giveup from "./Giveup";
 import axios from "axios";
-import url from "./Url";
+import url from "../Url";
+import Cancel from "./Cancel";
+import { useModal } from "./use-Modal";
+
 const Game = ()=>{
+    const {isModalVisible,
+        setModalVisible
+    } = useModal()
     const navigation = useNavigation();
     const route = useRoute();
     const {creatureName,creatureId} = route.params;
@@ -26,6 +33,7 @@ const Game = ()=>{
         try {
           const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
           const response = await axios.get(myUrl);
+          console.log(response.data);
           setQuizContent(response.data);
         }
         catch (error){
@@ -38,8 +46,9 @@ const Game = ()=>{
             const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
             let tmp = {...userAnswer};
             tmp.userAnswer = answer;
-            console.log(tmp);
-            const response =  axios.post(myUrl,userAnswer); 
+            
+            const response =  axios.post(myUrl,userAnswer);
+            console.log(response.data);
         }
         catch (error){
             console.error('postError',error);
@@ -62,11 +71,15 @@ const Game = ()=>{
 
     return(
         <>
-        <Giveup/>
-        <View style={{justifyContent:"center",alignItems:"center"}}>
+        <Giveup setModalVisible={setModalVisible}/>
+        <View
+           
+            style={{justifyContent:"center",alignItems:"center"}}>
             
             <Heihgt height={80}/>
-            <View style={{
+            <View
+                
+                style={{    
                 flexDirection:"row",
                 width:350,
                 height:8,
@@ -104,7 +117,23 @@ const Game = ()=>{
             <TouchableOpacity style={style.answer} onPress={()=>click(creatureId,quizNum,0)}>
                 <Text style={{textAlign:"center"}}>잘못된 말을 하고 있는 거 같아요</Text>
             </TouchableOpacity>
+        
         </View>
+        <Modal
+         animationIn={"slideInUp"}
+         animationOut={"slideOutDown"}
+         animationInTiming={1000}
+         animationOutTiming={1000}
+         backdropOpacity={0.7}
+         backdropColor=""
+         backdropTransitionInTiming={800}
+         backdropTransitionOutTiming={800}
+         transparent={true}
+         visible={isModalVisible}
+        >
+            <Cancel setModalVisible={setModalVisible} creatureName={creatureName} creatureId={creatureId}/>
+        </Modal>
+
         </>
     );
 };
@@ -118,7 +147,8 @@ const style  = StyleSheet.create({
         height:50,
         justifyContent:"center",
         backgroundColor:"#F2F6C4"
-    }
+    },
+
 });
 
 export default Game;

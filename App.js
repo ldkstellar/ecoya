@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
-import Chat from './src/map/Chat';
+import Chat from './src/quiz/Chat';
 import MapIcon from './src/icons/MapIcon';
 import Book from './src/icons/BookIcon';
 import Heihgt from './src/Heihgt';
@@ -15,9 +15,9 @@ import MypageIcon from './src/icons/MypageIcon';
 import GreenBookIcon from './src/icons/GreenBookIcon';
 import GreenMypageIcon from './src/icons/GreenMyPageIcon';
 import GreenMapIcon from './src/icons/GreenMapIcon';
-import Quiz from './src/map/Quiz';
-import Game from './src/map/Game';
-import Loading from './src/map/Loading';
+import Quiz from './src/quiz/Quiz';
+import Game from './src/quiz/Game';
+import Loading from './src/quiz/Loading';
 
 
 SplashScreen.preventAutoHideAsync();

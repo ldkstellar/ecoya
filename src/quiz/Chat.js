@@ -5,7 +5,7 @@ import axios from "axios";
 import MessageIcon from "../icons/MessageIcon"
 import ChatText from "./ChatText";
 import {useMessage} from "./use-Message";
-import url from "./Url";
+import url from "../Url";
 
 export default ()=>{
     
