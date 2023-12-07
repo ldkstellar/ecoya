@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import Modal  from "react-native-modal";
-import {View,Text,StyleSheet, TouchableOpacity, ImageBackground} from "react-native";
+import {View,Text,StyleSheet, TouchableOpacity,StatusBar} from "react-native";
 import {useNavigation,useRoute} from "@react-navigation/native";
 import Heihgt from "../Heihgt";
 import Giveup from "./Giveup";
@@ -18,6 +18,7 @@ const Game = ()=>{
     const {creatureName,creatureId} = route.params;
     const [quizContent,setQuizContent] = useState(()=>{});
     const [quizNum,setQuiznum] = useState(1);
+
     const userAnswer = {
         userAnswer:undefined,
         creatureId:creatureId,
@@ -70,62 +71,83 @@ const Game = ()=>{
     }
 
     return(
-        <>
-        <Giveup setModalVisible={setModalVisible}/>
-        <View
-           
-            style={{justifyContent:"center",alignItems:"center"}}>
-            
-            <Heihgt height={80}/>
+        <View style={{backgroundColor:isModalVisible?'rgba(0, 0, 0, 0.5)':'#FFFFFF',width:"100%",height:"100%"}}>
+            <Giveup setModalVisible={setModalVisible}/>
             <View
+                style={{justifyContent:"center",alignItems:"center"}}>
                 
-                style={{    
-                flexDirection:"row",
-                width:350,
-                height:8,
-                borderRadius:100,
-                backgroundColor:"#F2F6C4"}}
-            >
-                <View style={{
-                    flex:quizNum,
+                <Heihgt height={80}/>
+                <View
+                    style={{    
+                    flexDirection:"row",
+                    width:350,
+                    height:8,
                     borderRadius:100,
-                    backgroundColor:"#1AAB0E",
-                    height:"100%"}}
-                />
+                    backgroundColor:"#F2F6C4"}}
+                >
+                    <View style={{
+                        flex:quizNum,
+                        borderRadius:100,
+                        backgroundColor:"#1AAB0E",
+                        height:"100%"}}
+                    />
 
-                <View style={{flex:4,backgroundColor:"#F2F6C4",borderRadius:100,height:"100%"}}/>                
+                    <View style={{flex:4,backgroundColor:"#F2F6C4",borderRadius:100,height:"100%"}}/>                
+                </View>
+                <Heihgt height={25}/>
+                <View style={{width:280,borderColor:"#333333",borderBottomWidth:0.8}}>
+                    <Text style={{textAlign:"center",fontWeight:"bold",fontSize:20,borderColor:"#333333",borderBottomWidth:0.8,paddingBottom:20}}>다음은 올바른 대화일까요?</Text>
+                </View>
+
+                {/* quizName */}
+                <Heihgt height={40}/>
+                <View style={{width:280,height:154}}>
+                    <Text style={{textAlign:"center",fontSize:16}}>{quizContent?.quiz}</Text>
+                </View>
+
+                <Heihgt height={202}/>
+
+                <TouchableOpacity
+
+                    style={{
+                        display:isModalVisible,
+                        borderColor:"#FFF",
+                        borderWidth:1,
+                        borderRadius:12,
+                        width:350,
+                        height:50,
+                        justifyContent:"center",
+                        backgroundColor:"#F2F6C4"
+                    }} 
+                    onPress={()=>click(creatureId,quizNum,1)
+                }>
+                    <Text style={{textAlign:"center"}}>올바른 말을 하고 있어요!</Text>
+                </TouchableOpacity>
+
+                <Heihgt height={12}/>
+                <TouchableOpacity 
+                    style={{
+                        display:isModalVisible,
+                        borderColor:"#FFF",
+                        borderWidth:1,
+                        borderRadius:12,
+                        width:350,
+                        height:50,
+                        justifyContent:"center",
+                        backgroundColor:"#F2F6C4"
+                    }} 
+                    onPress={()=>click(creatureId,quizNum,0)}
+                >
+                    <Text style={{textAlign:"center"}}>잘못된 말을 하고 있는 거 같아요</Text>
+                </TouchableOpacity>
             </View>
-            <Heihgt height={25}/>
-            <View style={{width:280,borderColor:"#333333",borderBottomWidth:0.8}}>
-                <Text style={{textAlign:"center",fontWeight:"bold",fontSize:20,borderColor:"#333333",borderBottomWidth:0.8,paddingBottom:20}}>다음은 올바른 대화일까요?</Text>
-            </View>
 
-            {/* quizName */}
-            <Heihgt height={40}/>
-            <View style={{width:280,height:154}}>
-                <Text style={{textAlign:"center",fontSize:16}}>{quizContent?.quiz}</Text>
-            </View>
-
-            <Heihgt height={202}/>
-            <TouchableOpacity style={style.answer} 
-                onPress={()=>click(creatureId,quizNum,1)
-            }>
-                <Text style={{textAlign:"center"}}>올바른 말을 하고 있어요!</Text>
-            </TouchableOpacity>
-
-            <Heihgt height={12}/>
-            <TouchableOpacity style={style.answer} onPress={()=>click(creatureId,quizNum,0)}>
-                <Text style={{textAlign:"center"}}>잘못된 말을 하고 있는 거 같아요</Text>
-            </TouchableOpacity>
-        
-        </View>
         <Modal
          animationIn={"slideInUp"}
          animationOut={"slideOutDown"}
          animationInTiming={1000}
          animationOutTiming={1000}
          backdropOpacity={0.7}
-         backdropColor=""
          backdropTransitionInTiming={800}
          backdropTransitionOutTiming={800}
          transparent={true}
@@ -134,7 +156,7 @@ const Game = ()=>{
             <Cancel setModalVisible={setModalVisible} creatureName={creatureName} creatureId={creatureId}/>
         </Modal>
 
-        </>
+        </View>
     );
 };
 

@@ -12,7 +12,6 @@ export default ()=>{
     const route = useRoute();
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
-    
     const {
         message,
         updateMessage,
@@ -25,7 +24,9 @@ export default ()=>{
     async function postData(message){  
         try {
             const myUrl = `${url}/send/${id}`;          
-            axios.post(myUrl,{content:message});
+            axios.post(myUrl,{content:message}).then((response)=>{
+                updateGetMessage(response.data); 
+            });
         }
 
         catch (error){
@@ -61,7 +62,6 @@ export default ()=>{
         <ChatText 
             updateMessage={updateMessage} 
             postData={postData} 
-            getData={getData} 
             message={message}
             getMessage={getMessage}
             data={route.params.header}
@@ -77,10 +77,10 @@ export default ()=>{
                     blurOnSubmit={false}
                 />
                 <TouchableOpacity onPress={()=>{
-                    postData(tmpMessage).then(getData()).catch(
-                        (error)=>console.log('final error',error));    
                     updateMessage(tmpMessage);
+                    postData(tmpMessage);    
                     setTempMessage('');
+                    
                     }} style={style.btn}>
                     <MessageIcon/>
                 </TouchableOpacity>
@@ -97,7 +97,6 @@ const style = StyleSheet.create({
         flex:1,
         justifyContent:"center"
     }
-
     ,
       Frame:{
           height:48.7,
@@ -108,7 +107,6 @@ const style = StyleSheet.create({
           alignItems:"center",
           borderColor:"#666666",
       },
-  
       input:{
           marginLeft:12,
           width:298,

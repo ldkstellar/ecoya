@@ -2,7 +2,7 @@
 import {ScrollView,Text, View,Image, TouchableOpacity,StyleSheet} from 'react-native'
 import Heihgt from '../Heihgt'
 
-export default ({updateMessage,getData,postData,getMessage,message,data})=>{    
+export default ({updateMessage,postData,getMessage,message,data})=>{    
     const startText = `안녕! 나는 ${data.creatureName}야.`;
     const secondText = `나에 대해 궁금한 점이 있다면 질문해줘`;
     const renderMessage = ()=>{
@@ -51,7 +51,7 @@ export default ({updateMessage,getData,postData,getMessage,message,data})=>{
                 <TouchableOpacity 
                 key={i}
                 onPress={()=>{
-                    postData(e).then(getData()).catch((err) => {console.log(err,'err');});
+                    postData(e);
                     updateMessage(e);}
                 }
 

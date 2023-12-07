@@ -6,7 +6,7 @@ export default ({setModalVisible,creatureName,creatureId}) =>{
     const navigation = useNavigation();
     console.log(creatureName,creatureId);
     return(
-        <View style={{borderRadius:12,alignSelf:"center",width:312,height:400,backgroundColor:"gray",alignItems:"center"}}>
+        <View style={{borderRadius:12,alignSelf:"center",width:312,height:400,backgroundColor:"#FFFFFF",alignItems:"center"}}>
             <Heihgt height={106}/>
             <Text style={Style.cancel}>조금만 더 맞추면</Text>
             <Text style={Style.cancel}>{creatureName}와 친구가 될 수 있어요!</Text>
