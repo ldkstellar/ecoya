@@ -9,7 +9,8 @@ import url from "../Url";
 import Cancel from "./Cancel";
 import { useModal } from "./use-Modal";
 import CorrectCharacter from "../icons/CorrectCharacter";
-
+import WrongCharacter from "../icons/WrongCharacter";
+import XImage from "../icons/XImage";
 const Game = ()=>{
     const {
         isModalVisible,
@@ -18,6 +19,8 @@ const Game = ()=>{
         setisCorrectVisible,
         isWrongVisible,
         setWrongVisible,
+        isLastStatus,
+        setLastStatus,
     } = useModal();
 
     const navigation = useNavigation();
@@ -65,8 +68,6 @@ const Game = ()=>{
             tmp.userAnswer = answer;
             tmp.quizNumber +=1;
             setAnswer(tmp);
-           
-            
             axios.post(myUrl,Answer).then((response)=>{
 
                 if (response.data.isCorrect) {
@@ -80,7 +81,6 @@ const Game = ()=>{
                 }
                 setCorrect(response.data.quizSolution);
                 setWrongVisible(!isWrongVisible);
-                
             });
           
         }
@@ -129,8 +129,13 @@ const Game = ()=>{
                             justifyContent:"center",
                             backgroundColor:"#EDEDED"
                         }} 
-                        onPress={()=>setisCorrectVisible(!isCorrectVisible)}>
-                        <Text style={{textAlign:"center"}}>다음 퀴즈를 풀래요!</Text>
+                        onPress={()=>{
+                            if (quizNum===4) {
+                                setQuiznum(quizNum+1);
+                            }
+                            setisCorrectVisible(!isCorrectVisible);
+                        }}>
+                        <Text style={{textAlign:"center"}}>{quizNum===4?'친구가 되었을까요?':'다음 퀴즈를 풀래요!'}</Text>
                     </TouchableOpacity>
                     <Heihgt height={12}/>
                 
@@ -175,8 +180,11 @@ const Game = ()=>{
                     <Text style={{textAlign:"center",fontSize:16}}>{correct}</Text>
                 </View>
                 
-                <View style={{width:304,height:304,borderWidth:40,borderRadius:304,borderColor:"#F2F6C4"}}>
-                        <CorrectCharacter/>
+                <View style={{width:304,height:304,justifyContent:"center",alignItems:"center"}}>
+                        <View style={{position:"absolute"}}>
+                            <XImage/>
+                        </View>
+                        <WrongCharacter/>
                 </View>
                 <Heihgt height={32}/>
 
@@ -191,8 +199,13 @@ const Game = ()=>{
                         justifyContent:"center",
                         backgroundColor:"#EDEDED"
                     }} 
-                    onPress={()=>setWrongVisible(!isWrongVisible)}>
-                    <Text style={{textAlign:"center"}}>다음 퀴즈를 풀래요!</Text>
+                    onPress={()=>{
+                        if (quizNum===4) {
+                            setQuiznum(quizNum+1);
+                        }
+                        setWrongVisible(!isWrongVisible);
+                        }}>
+                    <Text style={{textAlign:"center"}}>{quizNum===4?'친구가 되었을까요?':'다음 퀴즈를 풀래요!'}</Text>
                 </TouchableOpacity>
                 <Heihgt height={12}/>
             
@@ -221,14 +234,21 @@ const Game = ()=>{
     }
     
 
-    if (quizNum === 4) {
+    if (quizNum === 5 && userData.correctAnswer>=3) {
         return(
         <>
-            <Text>퀴즈 끝</Text>
+            <Text>획득</Text>
         </>
             
         )
         
+    }
+    else if(quizNum === 5 && userData.correctAnswer<3){
+        return(
+            <>
+            <Text>실패</Text>
+        </>
+        )
     }
 
     return(

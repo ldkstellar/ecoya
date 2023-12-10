@@ -4,6 +4,7 @@ export const useModal = ()=>{
     const [isModalVisible,setModalVisible] = useState(false);
     const [isCorrectVisible,setisCorrectVisible] = useState(false);
     const [isWrongVisible,setWrongVisible] = useState(false);
+    const [isLastStatus,setLastStatus] = useState(false);
 
 
     return{
@@ -12,6 +13,8 @@ export const useModal = ()=>{
         isCorrectVisible,
         setisCorrectVisible,
         isWrongVisible,
-        setWrongVisible
+        setWrongVisible,
+        isLastStatus,
+        setLastStatus
     };
 };
