@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import Modal  from "react-native-modal";
-import {View,Text,StyleSheet, TouchableOpacity,StatusBar} from "react-native";
+import Modal from "react-native-modal";
+import {View,Text,StyleSheet,TouchableOpacity,StatusBar} from "react-native";
 import {useNavigation,useRoute} from "@react-navigation/native";
 import Heihgt from "../Heihgt";
 import Giveup from "./Giveup";
@@ -12,6 +12,8 @@ import CorrectCharacter from "../icons/CorrectCharacter";
 import WrongCharacter from "../icons/WrongCharacter";
 import XImage from "../icons/XImage";
 import FailCharacter from "../icons/FailCharacter";
+import SucessCharacter from "../icons/SuccessCharacter";
+
 const Game = ()=>{
     const {
         isModalVisible,
@@ -46,23 +48,25 @@ const Game = ()=>{
   
 
     const click = (creatureId,quizNum,answer)=>{
-        fetchPostData(creatureId,quizNum,answer);
-        setQuiznum(quizNum+1);
+        setTimeout(()=>{
+            fetchPostData(creatureId,quizNum,answer);
+            setQuiznum(quizNum+1);
+        },1000);
     }
 
     async function fetchGetData(id,quiznum){  
         try {
-          const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
-          const response = await axios.get(myUrl);
-          console.log(response.data);
-          setQuizContent(response.data);
+            const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
+            const response = await axios.get(myUrl);
+            setQuizContent(response.data);
         }
         catch (error){
           console.error('Error:', error);
         }
     }
+    
 
-    const fetchPostData = (id,quiznum,answer)=>{
+    const  fetchPostData = (id,quiznum,answer)=>{
         try {
             const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
             let tmp = {...Answer};
@@ -70,9 +74,7 @@ const Game = ()=>{
             tmp.quizNumber +=1;
             setAnswer(tmp);
             axios.post(myUrl,Answer).then((response)=>{
-
-                if (response.data.isCorrect) {
-                    console.log(response.data);
+                if (response.data.isCorrect){
                     let tmp = {...userData};
                     tmp.correctAnswer+=1;
                     setUserData(tmp);
@@ -88,6 +90,21 @@ const Game = ()=>{
         catch (error){
             console.error('postError',error);
         }
+    }
+    
+    async function fetchPostAddData() {
+        const myUrl = `${url}/user/${userData.userId}/Encyclopedia/${creatureId}/${userData.correctAnswer}`
+        try{
+             axios.post(myUrl,userData).then((response)=>{
+                console.log(response);
+             });
+            
+
+        }
+        catch(error){
+            console.error('postAddDataError',error);
+        }
+        
     }
 
     useEffect(()=>{
@@ -166,14 +183,13 @@ const Game = ()=>{
             <Giveup setModalVisible={setModalVisible}/>
             <View
                 style={{justifyContent:"center",alignItems:"center"}}>
-                
+    
                 <Heihgt height={40}/>
 
                 <View style={{width:280,borderColor:"#333333",borderBottomWidth:0.8}}>
                     <Text style={{textAlign:"center",fontWeight:"bold",fontSize:20,borderColor:"#333333",borderBottomWidth:0.8,paddingBottom:20}}>다시 한 번 생각해볼까요?</Text>
                 </View>
 
-                {/* quizName */}
                 <Heihgt height={30}/>
 
                 <View style={{width:280,height:154}}>
@@ -203,6 +219,7 @@ const Game = ()=>{
                         if (quizNum===4) {
                             setQuiznum(quizNum+1);
                         }
+
                         setWrongVisible(!isWrongVisible);
                         }}>
                     <Text style={{textAlign:"center"}}>{quizNum===4?'친구가 되었을까요?':'다음 퀴즈를 풀래요!'}</Text>
@@ -236,9 +253,37 @@ const Game = ()=>{
 
     if (quizNum === 5 && userData.correctAnswer>=3) {
         return(
-        <>
-            <Text>획득</Text>
-        </>
+            <View style={{backgroundColor:'#FFFFFF',width:"100%",height:"100%"}}>
+            <Giveup setModalVisible={setModalVisible}/>   
+            <Heihgt height={40}/> 
+            <View style={{justifyContent:"center",alignItems:"center"}}>
+                <Text style={{fontWeight:"bold",fontSize:20}}>'{creatureName}'에 대한 퀴즈를 맞춰,</Text>
+                <Text style={{fontWeight:"bold",fontSize:20}}>친구가 되었어요!</Text>
+            </View>
+            <Heihgt height={250}/>
+            <SucessCharacter/>
+            <Heihgt height={54}/>
+            <View style={{alignItems:"center"}}>
+            <TouchableOpacity
+                style={{
+                    borderColor:"#FFF",
+                    borderWidth:1,
+                    borderRadius:12,
+                    width:350,
+                    height:50,
+                    justifyContent:"center",
+                    backgroundColor:"#EDEDED"
+                }} 
+                onPress={()=>{
+                    setModalVisible((prev)=>!prev);
+                    fetchPostAddData();
+                    navigation.reset({ index: 0, routes: [{name: 'home'}]});
+                    }}>
+                <Text style={{textAlign:"center"}}>다른 친구를 보러 갈래요</Text>
+            </TouchableOpacity>
+            </View>
+        </View>
+        
             
         )
         
@@ -258,21 +303,17 @@ const Game = ()=>{
                 <View style={{alignItems:"center"}}>
                 <TouchableOpacity
                     style={{
-                        
                         borderColor:"#FFF",
                         borderWidth:1,
                         borderRadius:12,
                         width:350,
                         height:50,
-                        
                         justifyContent:"center",
                         backgroundColor:"#EDEDED"
                     }} 
                     onPress={()=>{
-                        if (quizNum===4) {
-                            setQuiznum(quizNum+1);
-                        }
-                        setWrongVisible(!isWrongVisible);
+                        setModalVisible((prev)=>!prev);
+                        navigation.reset({ index: 0, routes:[{name: 'home'}]});
                         }}>
                     <Text style={{textAlign:"center"}}>다음에 다시 도전할래요!</Text>
                 </TouchableOpacity>
@@ -367,7 +408,6 @@ const Game = ()=>{
             >
                 <Cancel setModalVisible={setModalVisible} creatureName={creatureName} creatureId={creatureId}/>
             </Modal>
-
         </View>
     );
 };
@@ -382,7 +422,6 @@ const style  = StyleSheet.create({
         justifyContent:"center",
         backgroundColor:"#F2F6C4"
     },
-
 });
 
 export default Game;

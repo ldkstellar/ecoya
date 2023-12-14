@@ -132,7 +132,6 @@ export default function App() {
               close:config,
             }}}/>
           <Stack.Screen name='game' component={Game} options={{headerShown:false,
-            
             title:"",
             cardStyle:{
               backgroundColor:"#FFF"
@@ -149,7 +148,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor:'#fff',
   },
 });
 

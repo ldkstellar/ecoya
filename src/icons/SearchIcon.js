@@ -1,7 +1,7 @@
 import { WithLocalSvg } from 'react-native-svg';
 import searchIcon from '../../assets/searchIcon.svg'
 
-const SearchIcon = ({color}) => {
+const SearchIcon = () => {
     return (
        
             <WithLocalSvg

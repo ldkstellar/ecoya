@@ -5,7 +5,7 @@ import BackBtn from "../icons/BackButton";
 
 const Giveup = ({setModalVisible})=>{
     //const navigation = useNavigation();
-    const [btn,setBtn] = useState(false);
+    
     return(
         <TouchableOpacity style={{paddingRight:10}} onPress={()=>setModalVisible((prev)=>!prev)}>
            <BackBtn/>

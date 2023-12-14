@@ -34,19 +34,6 @@ export default ()=>{
         }
     };
 
-    async function getData(){
-
-        try {
-          const myUrl = `${url}/getLastResponse`;
-          const response = await axios.get(myUrl);
-          updateGetMessage(response.data); 
-        }
-
-        catch (error){
-          console.error('getError:', error);
-        }
-    };
-
     useEffect(()=>{
         navigation.setOptions({
             title:route.params.header.creatureName
