@@ -11,6 +11,7 @@ import { useModal } from "./use-Modal";
 import CorrectCharacter from "../icons/CorrectCharacter";
 import WrongCharacter from "../icons/WrongCharacter";
 import XImage from "../icons/XImage";
+import FailCharacter from "../icons/FailCharacter";
 const Game = ()=>{
     const {
         isModalVisible,
@@ -138,7 +139,6 @@ const Game = ()=>{
                         <Text style={{textAlign:"center"}}>{quizNum===4?'친구가 되었을까요?':'다음 퀴즈를 풀래요!'}</Text>
                     </TouchableOpacity>
                     <Heihgt height={12}/>
-                
                 </View>
 
                 <Modal
@@ -245,9 +245,39 @@ const Game = ()=>{
     }
     else if(quizNum === 5 && userData.correctAnswer<3){
         return(
-            <>
-            <Text>실패</Text>
-        </>
+            <View style={{backgroundColor:'#FFFFFF',width:"100%",height:"100%"}}>
+                <Giveup setModalVisible={setModalVisible}/>   
+                <Heihgt height={40}/> 
+                <View style={{justifyContent:"center",alignItems:"center"}}>
+                    <Text style={{fontWeight:"bold",fontSize:20}}>'{creatureName}'와  친구가 되지 못했어요</Text>
+                    <Text style={{fontWeight:"bold",fontSize:20}}>다음에 다시 만나요!</Text>
+                </View>
+                <Heihgt height={250}/>
+                <FailCharacter/>
+                <Heihgt height={54}/>
+                <View style={{alignItems:"center"}}>
+                <TouchableOpacity
+                    style={{
+                        
+                        borderColor:"#FFF",
+                        borderWidth:1,
+                        borderRadius:12,
+                        width:350,
+                        height:50,
+                        
+                        justifyContent:"center",
+                        backgroundColor:"#EDEDED"
+                    }} 
+                    onPress={()=>{
+                        if (quizNum===4) {
+                            setQuiznum(quizNum+1);
+                        }
+                        setWrongVisible(!isWrongVisible);
+                        }}>
+                    <Text style={{textAlign:"center"}}>다음에 다시 도전할래요!</Text>
+                </TouchableOpacity>
+                </View>
+            </View>
         )
     }
 
