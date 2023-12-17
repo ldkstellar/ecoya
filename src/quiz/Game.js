@@ -22,8 +22,6 @@ const Game = ()=>{
         setisCorrectVisible,
         isWrongVisible,
         setWrongVisible,
-        isLastStatus,
-        setLastStatus,
     } = useModal();
 
     const navigation = useNavigation();
@@ -46,7 +44,6 @@ const Game = ()=>{
         correctAnswer:0,
     });
   
-
     const click = (creatureId,quizNum,answer)=>{
         setTimeout(()=>{
             fetchPostData(creatureId,quizNum,answer);
@@ -65,7 +62,6 @@ const Game = ()=>{
         }
     }
     
-
     const  fetchPostData = (id,quiznum,answer)=>{
         try {
             const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
@@ -153,6 +149,7 @@ const Game = ()=>{
                             }
                             setisCorrectVisible(!isCorrectVisible);
                         }}>
+                            
                         <Text style={{textAlign:"center"}}>{quizNum===4?'친구가 되었을까요?':'다음 퀴즈를 풀래요!'}</Text>
                     </TouchableOpacity>
                     <Heihgt height={12}/>
@@ -219,7 +216,6 @@ const Game = ()=>{
                         if (quizNum===4) {
                             setQuiznum(quizNum+1);
                         }
-
                         setWrongVisible(!isWrongVisible);
                         }}>
                     <Text style={{textAlign:"center"}}>{quizNum===4?'친구가 되었을까요?':'다음 퀴즈를 풀래요!'}</Text>
@@ -338,13 +334,13 @@ const Game = ()=>{
                     backgroundColor:"#F2F6C4"}}
                 >
                     <View style={{
-                        flex:quizNum,
+                        flex:1,
                         borderRadius:100,
                         backgroundColor:"#1AAB0E",
                         height:"100%"}}
                     />
 
-                    <View style={{flex:4,backgroundColor:"#F2F6C4",borderRadius:100,height:"100%"}}/>                
+                    <View style={{flex:4-quizNum,backgroundColor:"#F2F6C4",borderRadius:100,height:"100%"}}/>                
                 </View>
                 <Heihgt height={25}/>
 
