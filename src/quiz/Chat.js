@@ -8,10 +8,10 @@ import {useMessage} from "./use-Message";
 import url from "../Url";
 
 export default ()=>{
-    
     const route = useRoute();
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
+
     const {
         message,
         updateMessage,
@@ -78,7 +78,6 @@ export default ()=>{
 
 
 const style = StyleSheet.create({
-
     title:{
         flexDirection:"row",
         flex:1,
@@ -113,6 +112,4 @@ const style = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center"
       }
-      
-  
   });

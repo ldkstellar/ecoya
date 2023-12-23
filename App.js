@@ -18,6 +18,7 @@ import GreenMapIcon from './src/icons/GreenMapIcon';
 import Quiz from './src/quiz/Quiz';
 import Game from './src/quiz/Game';
 import Loading from './src/quiz/Loading';
+import Dic from './src/dic/Dic';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -36,9 +37,8 @@ const config = {
 };
 
 const MypageScreen = ()=>(<Text>Mypage</Text>);
-const NotificationScreen = ()=>(
-  <Text>나의 도감들입니다.</Text>
-);
+
+
 const forFade = ({ current }) => ({
   cardStyle: {
     opacity: current.progress,
@@ -76,9 +76,10 @@ const Home =()=>{
 
 <Tab.Screen
   name="Dictionalry"
-  component={NotificationScreen}
+  component={Dic}
   options={{
     title: "생물도감",
+    headerRight:()=><Search/>,
     tabBarIcon: ({focused}) => {
       const myColor = focused?"#1AAB0E":"#333333";
 
@@ -138,7 +139,6 @@ export default function App() {
             },
             cardStyleInterpolator:forFade
           }}/>
-         
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
