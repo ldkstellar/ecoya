@@ -37,11 +37,11 @@ const Game = ()=>{
             correctCount:0,
         }
     
-    const userData = {
+    const [userData,setUserData] = useState({
         userId:1,
-        creatureId:creatureId,
+        creatureId:0,
         correctCount:0,
-    }
+    });
     
 
 
@@ -69,19 +69,20 @@ const Game = ()=>{
     const  fetchPostData = (id,quiznum,answer)=>{
         try {
             
-            console.log('전달'+ answer);
-            const myUrl = `${url}/api/creatureQuiz/${id}/${1}`;
+            
+            const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
             let tmp = {...Answer};
             tmp.userAnswer = answer;
             tmp.quizNumber =quiznum;
           
             
             axios.post(myUrl,tmp).then((response)=>{
-                console.log('답' + response.data.isCorrect);
-                console.log(response.data);
+               
                 if (response.data.isCorrect){
-                   
-                    userData.correctCount+=1;
+                    
+                    const tmp =  {...userData};
+                    tmp.correctCount+=1;
+                    setUserData(tmp);
                     setCorrect(response.data.quizSolution);
                     setisCorrectVisible(!isCorrectVisible);
                     setQuiznum(quizNum+1);
@@ -98,10 +99,12 @@ const Game = ()=>{
         }
     }
     
-    async function fetchPostAddData() {
-        const myUrl = `${url}/user/${userData.userId}/addEncyclopedia`
-        try{
-             axios.post(myUrl,userData).then((response)=>{
+    function fetchPostAddData() {
+        const myUrl = `${url}/user/addEncyclopedia`
+        try{ // 수정 해야되는 곳
+             const tmp = {...userData};
+             tmp.correctCount = tmp.correctCount>=2?1:0;
+             axios.post(myUrl,tmp).then((response)=>{
                 console.log(response.data);
              });
             
@@ -114,7 +117,6 @@ const Game = ()=>{
     }
 
     useEffect(()=>{
-        console.log(quizNum);
         fetchGetData(creatureId,quizNum);    
     },[quizNum]);
 
@@ -297,7 +299,7 @@ const Game = ()=>{
         )
         
     }
-    else if(quizNum === 5 && userData.correctAnswer<2){
+    else if(quizNum === 5 && userData.correctCount<2){
         return(
             <View style={{backgroundColor:'#FFFFFF',width:"100%",height:"100%"}}>
                 <Giveup setModalVisible={setModalVisible}/>   
