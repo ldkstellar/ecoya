@@ -6,17 +6,7 @@ import axios from "axios";
 
 export default ()=>{
    
-    const [data,setData] = useState([{
-        userId:1,
-        creatureId:1,
-        creatureName:"두꺼비",
-        imageUrl:require('../../assets/Rabbit.jpg'),
-    },{
-        userId:1,
-        creatureId:2,
-        creatureName:"두꺼비",
-        imageUrl:require('../../assets/Rabbit.jpg'),
-    }]);
+    const [data,setData] = useState([]);
 
     const renderItem = ({item,index})=>{
         return(
@@ -31,7 +21,7 @@ export default ()=>{
     const id=1;
     async function getData(){
         try{
-            const getUrl =`${url}/${id}/Encyclopedia`;
+            const getUrl =`${url}/user/${id}/Encyclopedia`;
             const response = await axios.get(getUrl);
             setData(response.data);
 
@@ -40,10 +30,10 @@ export default ()=>{
             console.log(error);
         }
     }
-    // useEffect(()=>{
-    //     getData();
-    //     console.log(data);
-    // },[]);
+    useEffect(()=>{
+        getData();
+        console.log(data);
+    },[]);
     const Btn =()=>{
         const arr = ['포유류','양서류','파충류',"조류","어류"];
         return(

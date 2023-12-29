@@ -30,32 +30,36 @@ const Game = ()=>{
     const [quizContent,setQuizContent] = useState(()=>{});
     const [quizNum,setQuiznum] = useState(1);
     const [correct,setCorrect] = useState(()=>"");
-    const [Answer,setAnswer] = useState(
-        {
-            userAnswer:0,
+    const Answer={
             creatureId:creatureId,
             quizNumber:1,
+            userAnswer:0,
+            correctCount:0,
         }
-    );
-
-    const [userData,setUserData] = useState({
+    
+    const userData = {
         userId:1,
         creatureId:creatureId,
-        correctAnswer:0,
-    });
+        correctCount:0,
+    }
+    
+
+
   
     const click = (creatureId,quizNum,answer)=>{
         setTimeout(()=>{
             fetchPostData(creatureId,quizNum,answer);
-            setQuiznum(quizNum+1);
         },1000);
     }
 
     async function fetchGetData(id,quiznum){  
         try {
-            const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
-            const response = await axios.get(myUrl);
-            setQuizContent(response.data);
+            if (quiznum !== 4) {
+                
+                const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
+                const response = await axios.get(myUrl);
+                setQuizContent(response.data);
+            }
         }
         catch (error){
           console.error('Error:', error);
@@ -64,22 +68,28 @@ const Game = ()=>{
     
     const  fetchPostData = (id,quiznum,answer)=>{
         try {
-            const myUrl = `${url}/api/creatureQuiz/${id}/${quiznum}`;
+            
+            console.log('전달'+ answer);
+            const myUrl = `${url}/api/creatureQuiz/${id}/${1}`;
             let tmp = {...Answer};
             tmp.userAnswer = answer;
-            tmp.quizNumber +=1;
-            setAnswer(tmp);
-            axios.post(myUrl,Answer).then((response)=>{
+            tmp.quizNumber =quiznum;
+          
+            
+            axios.post(myUrl,tmp).then((response)=>{
+                console.log('답' + response.data.isCorrect);
+                console.log(response.data);
                 if (response.data.isCorrect){
-                    let tmp = {...userData};
-                    tmp.correctAnswer+=1;
-                    setUserData(tmp);
+                   
+                    userData.correctCount+=1;
                     setCorrect(response.data.quizSolution);
                     setisCorrectVisible(!isCorrectVisible);
+                    setQuiznum(quizNum+1);
                     return;
                 }
                 setCorrect(response.data.quizSolution);
                 setWrongVisible(!isWrongVisible);
+                setQuiznum(quizNum+1);
             });
           
         }
@@ -89,10 +99,10 @@ const Game = ()=>{
     }
     
     async function fetchPostAddData() {
-        const myUrl = `${url}/user/${userData.userId}/Encyclopedia/${creatureId}/${userData.correctAnswer}`
+        const myUrl = `${url}/user/${userData.userId}/addEncyclopedia`
         try{
              axios.post(myUrl,userData).then((response)=>{
-                console.log(response);
+                console.log(response.data);
              });
             
 
@@ -104,10 +114,12 @@ const Game = ()=>{
     }
 
     useEffect(()=>{
+        console.log(quizNum);
         fetchGetData(creatureId,quizNum);    
     },[quizNum]);
 
     if (isCorrectVisible) {
+        
         return(
             <View style={{backgroundColor:'#FFFFFF',width:"100%",height:"100%"}}>
                 <Giveup setModalVisible={setModalVisible}/>
@@ -175,6 +187,7 @@ const Game = ()=>{
         )
     }
     else if (isWrongVisible){
+        
         return(
             <View style={{backgroundColor:'#FFFFFF',width:"100%",height:"100%"}}>
             <Giveup setModalVisible={setModalVisible}/>
@@ -247,7 +260,7 @@ const Game = ()=>{
     }
     
 
-    if (quizNum === 5 && userData.correctAnswer>=3) {
+    if (quizNum === 5 && userData.correctCount>=2) {
         return(
             <View style={{backgroundColor:'#FFFFFF',width:"100%",height:"100%"}}>
             <Giveup setModalVisible={setModalVisible}/>   
@@ -284,7 +297,7 @@ const Game = ()=>{
         )
         
     }
-    else if(quizNum === 5 && userData.correctAnswer<3){
+    else if(quizNum === 5 && userData.correctAnswer<2){
         return(
             <View style={{backgroundColor:'#FFFFFF',width:"100%",height:"100%"}}>
                 <Giveup setModalVisible={setModalVisible}/>   
