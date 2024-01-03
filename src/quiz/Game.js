@@ -30,6 +30,7 @@ const Game = ()=>{
     const [quizContent,setQuizContent] = useState(()=>{});
     const [quizNum,setQuiznum] = useState(1);
     const [correct,setCorrect] = useState(()=>"");
+
     const Answer={
             creatureId:creatureId,
             quizNumber:1,
@@ -44,8 +45,6 @@ const Game = ()=>{
     });
     
 
-
-  
     const click = (creatureId,quizNum,answer)=>{
         setTimeout(()=>{
             fetchPostData(creatureId,quizNum,answer);
@@ -161,6 +160,7 @@ const Game = ()=>{
                             if (quizNum===4) {
                                 setQuiznum(quizNum+1);
                             }
+
                             setisCorrectVisible(!isCorrectVisible);
                         }}>
                             
@@ -214,6 +214,7 @@ const Game = ()=>{
                         </View>
                         <WrongCharacter/>
                 </View>
+                
                 <Heihgt height={32}/>
 
                 <TouchableOpacity

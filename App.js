@@ -19,7 +19,7 @@ import Quiz from './src/quiz/Quiz';
 import Game from './src/quiz/Game';
 import Loading from './src/quiz/Loading';
 import Dic from './src/dic/Dic';
-
+import Specific from './src/dic/Specific';
 
 SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
@@ -139,6 +139,8 @@ export default function App() {
             },
             cardStyleInterpolator:forFade
           }}/>
+          <Stack.Screen name='Dic' component={Dic}/>
+          <Stack.Screen name="Specific" component={Specific} options={{headerShown:true,title:"dd"}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
