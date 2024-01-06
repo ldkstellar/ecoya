@@ -3,13 +3,11 @@ import { useNavigation } from "@react-navigation/native";
 import {TouchableOpacity} from "react-native"
 import BackBtn from "../icons/BackButton";
 
-const Giveup = ({setModalVisible})=>{
-    //const navigation = useNavigation();
-    
+const CancelButton = ({setModalVisible})=>{
     return(
         <TouchableOpacity style={{paddingRight:10}} onPress={()=>setModalVisible((prev)=>!prev)}>
            <BackBtn/>
         </TouchableOpacity>
     );
 };
-export default Giveup;
+export default CancelButton;

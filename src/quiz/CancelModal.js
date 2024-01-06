@@ -1,11 +1,12 @@
-
 import {View,Text,StyleSheet, TouchableOpacity} from 'react-native';
-import Heihgt from '../Heihgt';
+import Heihgt from '../Height';
 import { useNavigation } from '@react-navigation/native';
-export default ({setModalVisible,creatureName,creatureId}) =>{
+
+ const CancelModal =  ({setModalVisible,creatureName}) =>{
     const navigation = useNavigation();
-    console.log(creatureName,creatureId);
+    
     return(
+        
         <View style={{borderRadius:12,alignSelf:"center",width:312,height:400,backgroundColor:"#FFFFFF",alignItems:"center"}}>
             <Heihgt height={106}/>
             <Text style={Style.cancel}>조금만 더 맞추면</Text>
@@ -20,6 +21,8 @@ export default ({setModalVisible,creatureName,creatureId}) =>{
 
     )
 }
+
+export default CancelModal;
 
 const Style = StyleSheet.create({
     cancel:{

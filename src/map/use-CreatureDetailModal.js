@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export const useMapModal = () =>{
+export const useCreatureDetailModal = () =>{
     const [isModalVisible, setModalVisible] = useState(false);
     const [selectedMarkerData, setSelectedMarkerData] = useState([]);
     
     const handleMarkerPress = (data) => {
-            setModalVisible(true)
+            setModalVisible(!isModalVisible)
             setSelectedMarkerData(data);
     };
      

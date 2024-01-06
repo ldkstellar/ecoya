@@ -1,10 +1,11 @@
 import { useState ,useEffect} from "react";
 import {TouchableOpacity,View,Text,Image,StyleSheet,} from "react-native"
-import Heihgt from "../Heihgt"
+import Height from "../Height"
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import url from "../Url";
-export default ({closeModal,id})=>{
+
+const CreatureDatilModal =  ({closeModal,id})=>{
   const navigation = useNavigation();
   const [animalData,setanimalData] = useState(()=>null);
   
@@ -20,7 +21,6 @@ export default ({closeModal,id})=>{
   }
 
   useEffect(()=>{
-    
     fetchData();
   }, []); // 처음렌더링 될때 저장
 
@@ -39,7 +39,7 @@ export default ({closeModal,id})=>{
         }}>
             
       <View style={style.specific}>
-      <Heihgt height={20}/>
+      <Height height={20}/>
       <View style={{flexDirection:"row",marginLeft:21}}>
         <Image
           style={style.specific.image}
@@ -60,7 +60,7 @@ export default ({closeModal,id})=>{
                     <Text style={{fontSize:12,color:"#FFF"}}>채팅하기</Text>
                 </TouchableOpacity>
               </View>
-              <Heihgt height={5}/>
+              <Height height={5}/>
                 <Text style={{fontSize:12,fontWeight:400,marginRight:20,color:"#D9D9D9"}} numberOfLines={0}>{animalData.creatureInformation.length>20?animalData.creatureInformation.slice(0,50):animalData.creatureInformation}</Text>
           </View>
       </View>
@@ -69,6 +69,8 @@ export default ({closeModal,id})=>{
     </TouchableOpacity>
   );
 }
+
+export default CreatureDatilModal;
 
 const style = StyleSheet.create(
 

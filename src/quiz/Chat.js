@@ -46,31 +46,34 @@ export default ()=>{
             style={{flex:1}}
             behavior={Platform.OS ==="ios" ? "padding":"height"}
             keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}>
-        <ChatText 
-            updateMessage={updateMessage} 
-            postData={postData} 
-            message={message}
-            getMessage={getMessage}
-            data={route.params.header}
-        />
 
-        <View style={style.Frame}>
-                <TextInput
-                    style={style.input}
-                    value={tmpMessage}
-                    onChangeText={setTempMessage}
-                    placeholder="메세지를 입력하세요"
-                    onSubmitEditing={()=>{}}
-                    blurOnSubmit={false}
-                />
-                <TouchableOpacity onPress={()=>{
-                    updateMessage(tmpMessage);
-                    postData(tmpMessage);    
-                    setTempMessage('');
-                    
-                    }} style={style.btn}>
-                    <MessageIcon/>
-                </TouchableOpacity>
+            <ChatText 
+                updateMessage={updateMessage} 
+                postData={postData} 
+                message={message}
+                getMessage={getMessage}
+                data={route.params.header}
+            />
+
+            <View style={style.Frame}>
+                    <TextInput
+                        style={style.input}
+                        value={tmpMessage}
+                        onChangeText={setTempMessage}
+                        placeholder="메세지를 입력하세요"
+                        onSubmitEditing={()=>{}}
+                        blurOnSubmit={false}
+                    />
+
+                    <TouchableOpacity 
+                        onPress={()=>{
+                            updateMessage(tmpMessage);
+                            postData(tmpMessage);    
+                            setTempMessage('');
+                        }} 
+                        style={style.btn}>
+                            <MessageIcon/>
+                    </TouchableOpacity>
             </View>
        </KeyboardAvoidingView>
     );

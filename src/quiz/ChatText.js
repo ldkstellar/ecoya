@@ -1,10 +1,11 @@
 
 import {ScrollView,Text, View,Image, TouchableOpacity,StyleSheet} from 'react-native'
-import Heihgt from '../Heihgt'
+import Height from '../Height'
 
 export default ({updateMessage,postData,getMessage,message,data})=>{    
     const startText = `안녕! 나는 ${data.creatureName}야.`;
     const secondText = `나에 대해 궁금한 점이 있다면 질문해줘`;
+
     const renderMessage = ()=>{
         return getMessage.map((value,index)=>{
             return(
@@ -42,9 +43,9 @@ export default ({updateMessage,postData,getMessage,message,data})=>{
                     </View>
                 </View>
             </View>)
-                })};
+    })};
 
-    const myBtn = ()=>{
+    const Btn = ()=>{
         const btn = ['서식환경','유형','먹이'];
         return btn.map((e,i)=>{
             return(
@@ -76,7 +77,7 @@ export default ({updateMessage,postData,getMessage,message,data})=>{
 
     return(
         <ScrollView style = {{backgroundColor:"#FFF"}}>
-            <Heihgt height={15}/>   
+            <Height height={15}/>   
             <View style={{marginLeft:20,flexDirection:"row"}}>
                     <Image source={{uri:data.imageUrl}} style={{borderRadius:30}} width={50} height={50}/>
                     
@@ -107,10 +108,10 @@ export default ({updateMessage,postData,getMessage,message,data})=>{
                 <Text style={{paddingLeft:10,textAlign:"left"}}>{secondText}</Text>
             </View>
 
-            <Heihgt height={10}/>
+            <Height height={10}/>
 
             <View style={{flexDirection:"row"}}>
-                {myBtn()}  
+                {Btn()}  
             </View>
             {renderMessage(getMessage)}
         </ScrollView>

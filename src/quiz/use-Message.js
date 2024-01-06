@@ -7,12 +7,9 @@ export const useMessage = ()=>{
        let tmp = [...message];
        tmp.push(value);
        setMessage(tmp);
-       
-       
     }
     const updateGetMessage = (value)=>{
-
-        let temp = [...getMessage];
+        const temp = [...getMessage];
         temp.push(value.slice(0,30));
         setGetmessage(temp);
     }
@@ -23,7 +20,6 @@ export const useMessage = ()=>{
         setMessage,
         getMessage,
         updateGetMessage,
-
     }
 
     

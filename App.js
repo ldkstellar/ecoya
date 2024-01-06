@@ -8,18 +8,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Chat from './src/quiz/Chat';
 import MapIcon from './src/icons/MapIcon';
 import Book from './src/icons/BookIcon';
-import Heihgt from './src/Heihgt';
+import Height from './src/Height';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import MypageIcon from './src/icons/MypageIcon';
 import GreenBookIcon from './src/icons/GreenBookIcon';
 import GreenMypageIcon from './src/icons/GreenMyPageIcon';
 import GreenMapIcon from './src/icons/GreenMapIcon';
-import Quiz from './src/quiz/Quiz';
-import Game from './src/quiz/Game';
 import Loading from './src/quiz/Loading';
 import Dic from './src/dic/Dic';
-import Specific from './src/dic/Specific';
+import QuizButton from './src/quiz/QuizButton';
+import Quiz from './src/quiz/Quiz';
+
 
 SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
@@ -65,7 +65,7 @@ const Home =()=>{
     const myColor = focused?'#1AAB0E':'#333333';
     return(
       <View style={{marginLeft:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-        <Heihgt height={6.44}/>
+        <Height height={6.44}/>
         {focused?<GreenMapIcon/>:<MapIcon/>}
         <Text style={{color:myColor}}>생태지도</Text>
       </View>
@@ -85,7 +85,7 @@ const Home =()=>{
 
       return(
         <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-          <Heihgt height={6.44}/>
+          <Height height={6.44}/>
           {focused?<GreenBookIcon/>:<Book/>}
           <Text style={{color:myColor}}>생물 도감</Text>
         </View>)
@@ -103,7 +103,7 @@ const Home =()=>{
 
       return(
           <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-            <Heihgt height={6.44}/>
+            <Height height={6.44}/>
             {focused?<GreenMypageIcon/>:<MypageIcon/>}
             <Text style={{color:myColor}}>마이페이지</Text>
           </View>
@@ -125,22 +125,21 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='home' component={Home} options={{headerShown:false}}/>
-          <Stack.Screen name='chat' component={Chat} options={{headerBackTitle:"뒤로가기",headerRight:()=>(<Quiz/>)}}/>
+          <Stack.Screen name='chat' component={Chat} options={{headerBackTitle:"뒤로가기",headerRight:()=>(<QuizButton/>)}}/>
           <Stack.Screen name='loading' component={Loading} options={{
             headerShown:false,
             transitionSpec: {
               open:config,
               close:config,
             }}}/>
-          <Stack.Screen name='game' component={Game} options={{headerShown:false,
+          <Stack.Screen name='quiz' component={Quiz} options={{headerShown:false,
             title:"",
             cardStyle:{
               backgroundColor:"#FFF"
             },
             cardStyleInterpolator:forFade
           }}/>
-          <Stack.Screen name='Dic' component={Dic}/>
-          <Stack.Screen name="Specific" component={Specific} options={{headerShown:true,title:"dd"}}/>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

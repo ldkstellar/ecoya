@@ -1,6 +1,6 @@
 import {SafeAreaView,View,TouchableOpacity,TextInput} from 'react-native'
 
-import Heihgt from '../Heihgt'
+import Height from '../Height'
 import SearchIcon from '../icons/SearchIcon';
 export default (
     {
@@ -17,7 +17,7 @@ export default (
             alignItems:"center"
             }} 
             onPress={setModalbtn}>
-            <Heihgt height={10}/>
+            <Height height={10}/>
             <View
                 style={{
                     flexDirection:"row",

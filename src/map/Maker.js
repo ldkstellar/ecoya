@@ -4,11 +4,13 @@ import {View} from "react-native";
 import Modal  from "react-native-modal";
 import MapView, { Marker } from "react-native-maps";
 import axios from 'axios';
-import { useMapModal } from "./use-MapModal";
-import MapModal from "./MapModal";
+import { useCreatureDetailModal, useMapModal } from "./use-CreatureDetailModal";
+import MapModal from "./CreatureDetailModal";
 import Refresh from "./Refresh";
 import * as Location from 'expo-location';
 import url from "../Url";
+import CreatureDatilModal from "./CreatureDetailModal";
+
 const MyMarker = ({ item,handleMarkerPress }) => {
   return (
     <Marker
@@ -26,7 +28,7 @@ const Markers = () => {
     handleMarkerPress,
     closeModal,
     isModalVisible
-  } = useMapModal();
+  } = useCreatureDetailModal();
 
   const [animalData,setanimalData] = useState([]);
   const [region, setRegion] = useState({
@@ -44,6 +46,7 @@ const Markers = () => {
       longitudeDelta: 0.01
     }
   );
+
   const getLocationAsync = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
@@ -58,29 +61,27 @@ const Markers = () => {
         ['longitude']:location.coords.longitude
       });
   };
+
+  async function fetchData() {
+    try {
+      const response = await axios.get(`${url}/api/creatures`);
+      setanimalData(response.data);
+    } 
+    catch (error) {
+      console.error('MapError:', error);
+    }
+  }
+
   useEffect(() => {
     getLocationAsync();
+    fetchData();
     
   }, []);
-  useEffect(()=>console.log(initLocation),[initLocation]);
-  
-  useEffect(
-    () => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(`${url}/api/creatures`);
-        setanimalData(response.data);
-      } 
-      catch (error) {
-        console.error('MapError:', error);
-      }
-    }
-    fetchData();
-  },[]);
 
+    
   if (animalData.length === 0) {
     return null;
-  }
+  } 
 
   return (
     <MapView
@@ -112,7 +113,7 @@ const Markers = () => {
           visible={isModalVisible}
         >
             
-        <MapModal
+        <CreatureDatilModal
             id={selectedMarkerData.locationId}
             closeModal={closeModal}
         />

@@ -1,7 +1,7 @@
 import { useNavigation,useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
 import { Text,ImageBackground } from "react-native";
-import Heihgt from "../Heihgt";
+import Heihgt from "../Height";
 const Loading =()=>{
     const route = useRoute();
     const {creature,id} = route.params;
@@ -9,7 +9,7 @@ const Loading =()=>{
 
     useEffect(()=>{
         setTimeout(()=>{
-            navigation.navigate('game',{creatureName:creature,creatureId:id});
+            navigation.navigate('quiz',{creatureName:creature,creatureId:id});
         },1000);
     },[]);
 
