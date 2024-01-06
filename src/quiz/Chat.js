@@ -7,7 +7,7 @@ import ChatText from "./ChatText";
 import {useMessage} from "./use-Message";
 import url from "../Url";
 
-export default ()=>{
+const Chat = ()=>{
     const route = useRoute();
     const navigation = useNavigation();
     const id = route.params.header.creatureId;
@@ -78,7 +78,7 @@ export default ()=>{
        </KeyboardAvoidingView>
     );
 }
-
+export default Chat;
 
 const style = StyleSheet.create({
     title:{
