@@ -19,8 +19,6 @@ import Loading from './src/quiz/Loading';
 import Dic from './src/dic/Dic';
 import QuizButton from './src/quiz/QuizButton';
 import Quiz from './src/quiz/Quiz';
-
-
 SplashScreen.preventAutoHideAsync();
 const Tab = createBottomTabNavigator();
 const Stack =  createStackNavigator();
@@ -53,63 +51,63 @@ const Home =()=>{
       tabBarShowLabel: false,}}
     >
 
-<Tab.Screen
-  name="Home"
-  component={Map}
-  options={{
-  headerRight:()=>(
-    <Search/>
-  ),
-  title: "생태지도",
-  tabBarIcon: ({focused}) => {
-    const myColor = focused?'#1AAB0E':'#333333';
-    return(
-      <View style={{marginLeft:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-        <Height height={6.44}/>
-        {focused?<GreenMapIcon/>:<MapIcon/>}
-        <Text style={{color:myColor}}>생태지도</Text>
-      </View>
-    )
-  }
-}}
-/>
-
-<Tab.Screen
-  name="Dictionalry"
-  component={Dic}
-  options={{
-    title: "생물도감",
-    headerRight:()=><Search/>,
-    tabBarIcon: ({focused}) => {
-      const myColor = focused?"#1AAB0E":"#333333";
-
-      return(
-        <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
-          <Height height={6.44}/>
-          {focused?<GreenBookIcon/>:<Book/>}
-          <Text style={{color:myColor}}>생물 도감</Text>
-        </View>)
-    },
-  }}
-/>
-
-  <Tab.Screen
-    name="Mypage"
-    component={MypageScreen} // Replace with a valid component
-    options={{
-      title: "마이페이지",
-      tabBarIcon: ({focused}) =>{ 
-      const myColor = focused?"#1AAB0E":"#333333";
-
-      return(
-          <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+    <Tab.Screen
+      name="Home"
+      component={Map}
+      options={{
+      headerRight:()=>(
+        <Search/>
+      ),
+      title: "생태지도",
+      tabBarIcon: ({focused}) => {
+        const myColor = focused?'#1AAB0E':'#333333';
+        return(
+          <View style={{marginLeft:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
             <Height height={6.44}/>
-            {focused?<GreenMypageIcon/>:<MypageIcon/>}
-            <Text style={{color:myColor}}>마이페이지</Text>
+            {focused?<GreenMapIcon/>:<MapIcon/>}
+            <Text style={{color:myColor}}>생태지도</Text>
           </View>
-      )}
-      ,}}/> 
-</Tab.Navigator> 
+        )
+      }
+    }}
+    />
+
+    <Tab.Screen
+      name="Dictionalry"
+      component={Dic}
+      options={{
+        title: "생물도감",
+        headerRight:()=><Search/>,
+        tabBarIcon: ({focused}) => {
+          const myColor = focused?"#1AAB0E":"#333333";
+
+          return(
+            <View style={{flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+              <Height height={6.44}/>
+              {focused?<GreenBookIcon/>:<Book/>}
+              <Text style={{color:myColor}}>생물 도감</Text>
+            </View>)
+        },
+      }}
+    />
+
+    <Tab.Screen
+      name="Mypage"
+      component={MypageScreen} // Replace with a valid component
+      options={{
+        title: "마이페이지",
+        tabBarIcon: ({focused}) =>{ 
+        const myColor = focused?"#1AAB0E":"#333333";
+
+        return(
+            <View style={{marginRight:65,flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+              <Height height={6.44}/>
+              {focused?<GreenMypageIcon/>:<MypageIcon/>}
+              <Text style={{color:myColor}}>마이페이지</Text>
+            </View>
+        )}
+        ,}}/> 
+  </Tab.Navigator> 
   )
 }
 
@@ -139,7 +137,6 @@ export default function App() {
             },
             cardStyleInterpolator:forFade
           }}/>
-          
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
@@ -152,12 +149,3 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
   },
 });
-
-
-
-
-
-
-
-
-
