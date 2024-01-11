@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState,} from "react";
+import React,{ useCallback, useEffect, useState,} from "react";
 import { Text,View,Image,FlatList,ScrollView, TouchableOpacity} from "react-native";
 import Height from "../Height";
 import url from "../Url";
@@ -11,7 +11,7 @@ import BackButton from'../icons/BackButton';
 const Cancel = ()=>{
     const navigation =useNavigation();
     return(
-    <TouchableOpacity onPress={()=>navigation.goBack()}>
+    <TouchableOpacity onPress={()=>navigation.goBack()  }>
         <BackButton/>
     </TouchableOpacity>
 
@@ -108,7 +108,9 @@ const Dic = ()=>{
     };
 
     const List = ()=>{
-        useEffect(()=>console.log('렌더'));
+        useEffect(()=>{
+            
+            return console.log(`언마운트`);});
         const navigation = useNavigation();
         const renderItem = ({item,index})=>{
             return(
