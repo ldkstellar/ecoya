@@ -1,32 +1,43 @@
-import { useEffect, useState,} from "react";
+import { useCallback, useEffect, useState,} from "react";
 import { Text,View,Image,FlatList,ScrollView, TouchableOpacity} from "react-native";
 import Height from "../Height";
 import url from "../Url";
 import axios from "axios";
 import { createStackNavigator } from "@react-navigation/stack";
 import {useNavigation ,useRoute} from "@react-navigation/native";
+import BackButton from'../icons/BackButton';
+
+
+const Cancel = ()=>{
+    const navigation =useNavigation();
+    return(
+    <TouchableOpacity onPress={()=>navigation.goBack()}>
+        <BackButton/>
+    </TouchableOpacity>
+
+    )
+}
 
 const Specific =  ()=>{
     const route = useRoute();
-    const navigation =useNavigation();
+    const navigation = useNavigation();
     const {creatureName,creatureId} = route.params;
     const [animalData,setanimalData] = useState(()=>null);
-    console.log(creatureId);
+   
     
     async function fetchDetailData(){  
         try {
-            console.log(creatureId);
-          const myUrl = `${url}/api/creatures/detail/${creatureId}`;
-          const response = await axios.get(myUrl);
-          console.log(response.data);
-          setanimalData(response.data);
+            const myUrl = `${url}/api/creatures/detail/${creatureId}`;
+            const response = await axios.get(myUrl);
+            setanimalData(response.data);
         }
         catch (error){
           console.error('Error:', error);
         }
     }
 
-    useEffect(() => {
+    useEffect(()=>{
+        console.log('render');
         navigation.setOptions({ title: creatureName });
         fetchDetailData();
       }, []);
@@ -46,14 +57,23 @@ const Specific =  ()=>{
 
             <View style={{flexDirection:"row",marginLeft:21.11}}>
                 <Text style={{fontWeight:"bold",color:"#666"}}>{animalData.detailCategoryName}</Text>
+                <View>
+
+                    <Text style={{marginLeft:20,width:290}}>{animalData.creatureSummaryInformation}</Text>
+                    <Height height={15}/>
+                    <ScrollView style={{marginLeft:20,width:288}}>
+                        <Text style={{color:"#999"}}>
+                            {animalData.creatureInformation}
+                        </Text>
+                    </ScrollView>
+                </View>
             </View>
         </View>
 
     )
 };
 
-
-const Dic =  ()=>{
+const Dic = ()=>{
     const navigation = useNavigation();
     const Stack = createStackNavigator();
     const [data,setData] = useState([]);
@@ -62,10 +82,9 @@ const Dic =  ()=>{
         try{
             const getUrl =`${url}/user/1/Encyclopedia`;
             const response = await axios.get(getUrl);
-            console.log(response.data);
             setData(response.data);
-
         }
+
         catch(error){
             console.log(error);
         }
@@ -88,8 +107,8 @@ const Dic =  ()=>{
         );
     };
 
-
     const List = ()=>{
+        useEffect(()=>console.log('렌더'));
         const navigation = useNavigation();
         const renderItem = ({item,index})=>{
             return(
@@ -114,28 +133,13 @@ const Dic =  ()=>{
         </View>
     
         )
-    };
-
-
-
-    
- 
-
-
-
+    }
 
     return(
-      
-
-    <Stack.Navigator initialRouteName="list">
-        <Stack.Screen name="list" component={List} options={{headerTitle:"생물도감"}}/>
-        <Stack.Screen name="specific" component={Specific} options={()=>{
-            
-        }}/>
-    </Stack.Navigator>
-       
-       
-    );
-}
+        <Stack.Navigator initialRouteName="list">
+            <Stack.Screen name="list" component={List} options={{headerTitle:"생물도감"}}/>
+            <Stack.Screen name="specific" component={Specific} options={{headerLeft:()=>(<Cancel/>)}}/>
+        </Stack.Navigator>);
+    }
 
 export default Dic;
