@@ -1,147 +1,209 @@
-import React,{ useCallback, useEffect, useState,} from "react";
-import { Text,View,Image,FlatList,ScrollView, TouchableOpacity} from "react-native";
+import React, { useCallback, useEffect, useState } from "react";
+import {
+  Text,
+  View,
+  Image,
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import Height from "../Height";
 import url from "../Url";
 import axios from "axios";
 import { createStackNavigator } from "@react-navigation/stack";
-import {useNavigation ,useRoute} from "@react-navigation/native";
-import BackButton from'../icons/BackButton';
+import { useNavigation, useRoute } from "@react-navigation/native";
+import BackButton from "../icons/BackButton";
 
-
-const Cancel = ()=>{
-    const navigation =useNavigation();
-    return(
-    <TouchableOpacity onPress={()=>navigation.goBack()  }>
-        <BackButton/>
+const Cancel = () => {
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity onPress={() => navigation.goBack()}>
+      <BackButton />
     </TouchableOpacity>
-
-    )
-}
-
-const Specific =  ()=>{
-    const route = useRoute();
-    const navigation = useNavigation();
-    const {creatureName,creatureId} = route.params;
-    const [animalData,setanimalData] = useState(()=>null);
-   
-    
-    async function fetchDetailData(){  
-        try {
-            const myUrl = `${url}/api/creatures/detail/${creatureId}`;
-            const response = await axios.get(myUrl);
-            setanimalData(response.data);
-        }
-        catch (error){
-          console.error('Error:', error);
-        }
-    }
-
-    useEffect(()=>{
-        console.log('render');
-        navigation.setOptions({ title: creatureName });
-        fetchDetailData();
-      }, []);
-
-      if (animalData === null) {
-        return undefined;
-      } 
-  
-    return(
-        <View style={{flex:1,backgroundColor:"#FFF"}}>
-            <Height height={70}/>
-            <View style={{width:349,height:312.57,borderRadius:12,alignSelf:"center"}}>
-                <Image style={{width:"100%",height:"100%"}} resizeMode="cover" source={require('../../assets/Rabbit.jpg')}/>
-            </View>
-
-            <Height height={48.16}/>
-
-            <View style={{flexDirection:"row",marginLeft:21.11}}>
-                <Text style={{fontWeight:"bold",color:"#666"}}>{animalData.detailCategoryName}</Text>
-                <View>
-
-                    <Text style={{marginLeft:20,width:290}}>{animalData.creatureSummaryInformation}</Text>
-                    <Height height={15}/>
-                    <ScrollView style={{marginLeft:20,width:288}}>
-                        <Text style={{color:"#999"}}>
-                            {animalData.creatureInformation}
-                        </Text>
-                    </ScrollView>
-                </View>
-            </View>
-        </View>
-
-    )
+  );
 };
 
-const Dic = ()=>{
-    const navigation = useNavigation();
-    const Stack = createStackNavigator();
-    const [data,setData] = useState([]);
+const Specific = () => {
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { creatureName, creatureId } = route.params;
+  const [animalData, setanimalData] = useState(() => null);
 
-    async function getData(){
-        try{
-            const getUrl =`${url}/user/1/Encyclopedia`;
-            const response = await axios.get(getUrl);
-            setData(response.data);
-        }
-
-        catch(error){
-            console.log(error);
-        }
+  async function fetchDetailData() {
+    try {
+      const myUrl = `${url}/api/creatures/detail/${creatureId}`;
+      const response = await axios.get(myUrl);
+      setanimalData(response.data);
+    } catch (error) {
+      console.error("Error:", error);
     }
+  }
 
-    useEffect(()=>{
-        getData();
-        return navigation.setOptions({headerShown: false});
-    },[]);
+  useEffect(() => {
+    navigation.setOptions({ title: creatureName });
+    fetchDetailData();
+  }, []);
 
-    const Btn =()=>{
-        const arr = ['포유류','양서류','파충류',"조류","어류"];
-        return(
-                arr.map((e,i)=>{
-                    return(
-                        <TouchableOpacity onPress={{}} key={i} style={{borderWidth:0.8,borderColor:"black",width:56,height:32,borderRadius:100,justifyContent:"center",marginRight:10}}>
-                            <Text style={{textAlign:"center",fontSize:14}}>{e}</Text>
-                        </TouchableOpacity>
-                    );})
-        );
+  if (animalData === null) {
+    return undefined;
+  }
+
+  return (
+    <View style={{ flex: 1, backgroundColor: "#FFF" }}>
+      <Height height={70} />
+      <View
+        style={{
+          width: 349,
+          height: 312.57,
+          borderRadius: 12,
+          alignSelf: "center",
+        }}
+      >
+        <Image
+          style={{ width: "100%", height: "100%" }}
+          resizeMode="cover"
+          source={require("../../assets/Rabbit.jpg")}
+        />
+      </View>
+
+      <Height height={48.16} />
+
+      <View style={{ flexDirection: "row", marginLeft: 21.11 }}>
+        <Text style={{ fontWeight: "bold", color: "#666" }}>
+          {animalData.detailCategoryName}
+        </Text>
+        <View>
+          <Text style={{ marginLeft: 20, width: 290 }}>
+            {animalData.creatureSummaryInformation}
+          </Text>
+          <Height height={15} />
+          <ScrollView style={{ marginLeft: 20, width: 288 }}>
+            <Text style={{ color: "#999" }}>
+              {animalData.creatureInformation}
+            </Text>
+          </ScrollView>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const Dic = () => {
+  const navigation = useNavigation();
+  const Stack = createStackNavigator();
+  const [data, setData] = useState([]);
+
+  async function getData() {
+    try {
+      const getUrl = `${url}/user/1/Encyclopedia`;
+      const response = await axios.get(getUrl);
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+    return navigation.setOptions({ headerShown: false });
+  }, []);
+
+  const Btn = () => {
+    const arr = ["포유류", "양서류", "파충류", "조류", "어류"];
+    return arr.map((e, i) => {
+      return (
+        <TouchableOpacity
+          onPress={{}}
+          key={i}
+          style={{
+            borderWidth: 0.8,
+            borderColor: "black",
+            width: 56,
+            height: 32,
+            borderRadius: 100,
+            justifyContent: "center",
+            marginRight: 10,
+          }}
+        >
+          <Text style={{ textAlign: "center", fontSize: 14 }}>{e}</Text>
+        </TouchableOpacity>
+      );
+    });
+  };
+
+  const List = () => {
+    const navigation = useNavigation();
+    const renderItem = ({ item, index }) => {
+      return (
+        <>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("specific", {
+                creatureName: item.creatureName,
+                creatureId: item.creatureId,
+              })
+            }
+            key={item.creatureId}
+            style={{
+              backgroundColor: "#BDBDBD",
+              width: 109,
+              height: 109,
+              marginBottom: 14,
+              marginRight: 11,
+            }}
+          >
+            <Image
+              style={{ width: 109, height: 109 }}
+              source={require("../../assets/Rabbit.jpg")}
+            />
+          </TouchableOpacity>
+        </>
+      );
     };
 
-    const List = ()=>{
-        useEffect(()=>{
-            
-            return console.log(`언마운트`);});
-        const navigation = useNavigation();
-        const renderItem = ({item,index})=>{
-            return(
-                <>
-                    <TouchableOpacity onPress={()=>navigation.navigate('specific',{creatureName:item.creatureName,creatureId:item.creatureId})} key={item.creatureId} style={{backgroundColor:"#BDBDBD",width:109,height:109,marginBottom:14,marginRight:11}}>
-                        <Image style={{width:109,height:109}} source={require('../../assets/Rabbit.jpg')}/>
-                    </TouchableOpacity>   
-                </>
-            );
-        
-        }
-        
-        return(
-            <View style={{width:"100%",height:"100%",borderTopColor:"black",borderTopWidth:0.8,backgroundColor:"#FFF",alignItems:"center"}}>
-            <Height height={20}/>
-            <View style={{height:40}}>
-                <ScrollView style={{}} horizontal={true}>
-                    <Btn/>
-                </ScrollView>
-            </View>
-            <FlatList style={{}} numColumns={3} horizontal={false} data={data} renderItem={renderItem} keyExtractor={(item=>item.creatureId)}/>
+    return (
+      <View
+        style={{
+          width: "100%",
+          height: "100%",
+          borderTopColor: "black",
+          borderTopWidth: 0.8,
+          backgroundColor: "#FFF",
+          alignItems: "center",
+        }}
+      >
+        <Height height={20} />
+        <View style={{ height: 40 }}>
+          <ScrollView style={{}} horizontal={true}>
+            <Btn />
+          </ScrollView>
         </View>
-    
-        )
-    }
+        <FlatList
+          style={{}}
+          numColumns={3}
+          horizontal={false}
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.creatureId}
+        />
+      </View>
+    );
+  };
 
-    return(
-        <Stack.Navigator initialRouteName="list">
-            <Stack.Screen name="list" component={List} options={{headerTitle:"생물도감"}}/>
-            <Stack.Screen name="specific" component={Specific} options={{headerLeft:()=>(<Cancel/>)}}/>
-        </Stack.Navigator>);
-    }
+  return (
+    <Stack.Navigator initialRouteName="list">
+      <Stack.Screen
+        name="list"
+        component={List}
+        options={{ headerTitle: "생물도감" }}
+      />
+      <Stack.Screen
+        name="specific"
+        component={Specific}
+        options={{ headerLeft: () => <Cancel /> }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export default Dic;
